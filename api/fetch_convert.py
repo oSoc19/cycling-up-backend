@@ -3,6 +3,7 @@
 # Built-in
 import os
 from pathlib import Path
+import json
 
 # External
 import requests 
@@ -19,6 +20,8 @@ BIKE_PACKING_URL = "/geoserver/bm_bike/wfs?service=wfs&version=1.1.0&request=Get
 BASE_DIR = Path(__file__).parent
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
+MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "mobigis_fetch.json")
+
 
 def run():
     """
@@ -27,26 +30,37 @@ def run():
     # Create data folder if not exists
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    fetch(MOBIRIS_API__BASE_URL+BIKE_INFRA_URL, "BIKE_infra.csv")
-    fetch(MOBIRIS_API__BASE_URL+BIKE_PACKING_URL, "bike_parking.csv")
-    # unzip_it()
+    fetch_them_all()
+
+
+def fetch_them_all():
+    """
+    Fetch all items and download them
+    """
+
+    with open(MOBIGIS_FETCH_JSON_PATH) as mobigis_fetch_json:
+        mobigis_fetch = json.load(mobigis_fetch_json)
+        
+        for fetch_item in mobigis_fetch['items']:
+            fetch_url = mobigis_fetch['base_url'] + fetch_item['url']
+            fetch(fetch_url, fetch_item['save_as'])
+    
 
 
 def fetch(url, save_as):
-    FILE_CHUNK_SIZE = 1024 * 50
+    file_chunk_size = 1024 * 50
 
     res = requests.get(url, stream=True)
     if res.status_code == 200:
         file_name = os.path.join(DATA_DIR, save_as)
         total_size = int(res.headers['Content-Length'])
         read = 0
-        print(total_size)
         with open(file_name, "wb") as res_data:
-            for chunk in res.iter_content(chunk_size=FILE_CHUNK_SIZE):
+            for chunk in res.iter_content(chunk_size=file_chunk_size):
                 percent = 100 * read / total_size
                 print("%3d%%" % (percent))
                 res_data.write(chunk)
-                read += FILE_CHUNK_SIZE
+                read += file_chunk_size
 
 
 

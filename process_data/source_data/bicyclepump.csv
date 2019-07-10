@@ -1,0 +1,7 @@
+FID,gid,name_fr,name_nl,image,geom,type
+bicyclepump.5,5,Pompe à vélo Gare du Nord,Fietspomp Noordstation,,POINT (149387.67531484 172135.8892866),P
+bicyclepump.6,6,Pompe à vélo Rue de Londres,Fietspomp Londenstraat,,POINT (149921.97948628 169734.10103854),P
+bicyclepump.7,7,Pompe à vélo Chaussée de Waterloo,Fietspomp Waterloosesteenweg,,POINT (149918.55010641 167118.06143549),P
+bicyclepump.2,2,Pompe à vélo Rue de Flandre,Fietspomp Vlaamsesteenweg,bike/accomodation/img/P2.jpg,POINT (148398.56731905 171344.01202548),P
+bicyclepump.55,55,Bruxelles Environnement,Leefmilieu Brussel,,POINT (148581.52700391 172897.24875072),R
+bicyclepump.56,56,Campus VUB Jettes,Campus VUB Jette,,POINT (145585.81091098 175188.88939255),R

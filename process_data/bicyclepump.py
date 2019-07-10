@@ -19,22 +19,23 @@ def convertCoordinates(lambertIn):
     return transform(inProj,outProj, lambertIn[0], lambertIn[1])
 
 
+# read data from ;csv file and process
 with open('process_data/source_data/bicyclepump.csv') as csv_file:
 
     csv_reader = csv.reader(csv_file, delimiter=',')
-    # skip header line
+    # extract property keys
     keys = next(csv_reader)
-    print(keys)
 
+    # list for geojson featurs
     features = []
 
     for row in csv_reader:
             
-        # extract coordinates from csv
+        # extract coordinates from csv and convert
         lambertIn = ((row[-2].split(' ')[-2][1:]), (row[-2].split(' ')[-1][:-1]))
         latOut, lonOut = convertCoordinates(lambertIn)
 
-        # put data in geojson
+        # put data in geojson feature and append to list
         properties = {}
         geometry = {}
         for key in keys:
@@ -45,7 +46,10 @@ with open('process_data/source_data/bicyclepump.csv') as csv_file:
         
         features.append(Feature(geometry=geometry, properties=properties))
 
+# create geojson FeatureCollection
 collection = FeatureCollection(features)
+
+# write data to .json file
 with open('process_data/ready_data/bicyclepump.json', 'w') as target:
     json.dump(collection, target)
 

@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-import api.getters as getters
+import getters as getters
 
 app = Flask(__name__)
 

@@ -33,15 +33,15 @@ def getMapHistorical():
     date = request.args.get('date')
     return jsonify(getters.getMatchedFeaturesHistorical(date))
 
-@app.route("/api/map/bike_pump")
+@app.route("/api/map/general/bike_pump")
 def getMapBicyclePump():
     return jsonify(getters.getJsonContents('process_data/data/bike_pump.json'))
 
-@app.route("/api/map/bike_parking")
+@app.route("/api/map/general/bike_parking")
 def getMapBikeParking():
     return jsonify(getters.getJsonContents('process_data/data/bike_parking.json'))
 
-@app.route("/api/map/bike_shop")
+@app.route("/api/map/general/bike_shop")
 def getMapBikeShop():
     return jsonify(getters.getJsonContents('process_data/data/bike_shop.json'))
 

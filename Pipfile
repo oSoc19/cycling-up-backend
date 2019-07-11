@@ -12,6 +12,8 @@ flask = "*"
 requests = "*"
 pyproj = "*"
 geojson = "*"
+flask-compress = "==1.4.0"
+flask-cors = "*"
 
 [requires]
 python_version = "3.7"

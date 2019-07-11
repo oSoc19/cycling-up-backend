@@ -16,6 +16,10 @@
         {
             "url" : "&typeName=bm_bike:bicyclepump",
             "save_as" : "bike_pump.json"
+        },
+        {
+            "url" : "&typeName=bm_bike:bicyclestore",
+            "save_as" : "bike_shop.json"
         }
        
     ]

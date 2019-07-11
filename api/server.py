@@ -1,15 +1,15 @@
 from flask import Flask
 from flask import request
+import getters as getters
 
 app = Flask(__name__)
 
-
-@app.route("/api/")
-def hello():
-    kind = request.args.get('kind')
+# annotation specifies route
+@app.route("/api/map/historical")
+def getMapHistorical():
+    # extract argument from request
     date = request.args.get('date')
-    return "Hello world!" + kind + date
-
+    return getters.getMatchedFeaturesHistorical(date)
 
 if __name__ == "__main__":
     app.run(debug=True)

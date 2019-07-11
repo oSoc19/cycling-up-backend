@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3530873078c436c284a567b39601c6e8297b4ca51c7f346abad88dfaa24a957e"
+            "sha256": "89150c32fa58eea35621eb7e598a52450abcace771bcdb477e6b7c4e8c158ef3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,6 +44,13 @@
             ],
             "index": "pypi",
             "version": "==1.1.1"
+        },
+        "flask-compress": {
+            "hashes": [
+                "sha256:468693f4ddd11ac6a41bca4eb5f94b071b763256d54136f77957cfee635badb3"
+            ],
+            "index": "pypi",
+            "version": "==1.4.0"
         },
         "geojson": {
             "hashes": [

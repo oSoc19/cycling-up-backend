@@ -33,6 +33,9 @@ def getMapHistorical():
     date = request.args.get('date')
     return jsonify(getters.getMatchedFeaturesHistorical(date))
 
+@app.route("/api/map/bicycle_pumps")
+def getMapBicyclePumps():
+    return jsonify(getters.getBicyclePumps())
 
 def configure_app():
     return app

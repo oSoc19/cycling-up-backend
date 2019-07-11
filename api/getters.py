@@ -6,7 +6,7 @@ def getMatchedFeaturesHistorical(date=2019):
     
     
     # load geodata
-    with open('match_dates/bike_infra.geojson', 'r') as sourceFile:
+    with open('match_dates/matched_features.geojson', 'r') as sourceFile:
         sourceData = json.loads(sourceFile.read())
 
     # load construction year data

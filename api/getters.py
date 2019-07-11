@@ -1,5 +1,10 @@
 import json
 from geojson import FeatureCollection
+import os
+from process_data.fetch_convert import DATA_DIR
+
+
+AVAILABLE_FILES = os.listdir(DATA_DIR)
 
 
 def getMatchedFeaturesHistorical(date=2019):
@@ -35,12 +40,14 @@ def getMatchedFeaturesHistorical(date=2019):
 
 
 
-def getJsonContents(path):
+def getJsonContents(kind):
     """
     Returns json data read from file at the given path.
     """
-
-    with open(path, 'r') as f:
-        data = json.loads(f.read())
-    
+    if not(kind+'.json' in AVAILABLE_FILES):
+        return None
+    else: 
+        with open('process_data/data/' + kind + '.json', 'r') as f:
+            data = json.load(f)
+        
     return data

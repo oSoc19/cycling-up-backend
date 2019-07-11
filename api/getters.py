@@ -31,4 +31,4 @@ def getMatchedFeaturesHistorical(date=2019):
     collection = FeatureCollection(requestedFeatures)
 
     # return geojson as string
-    return json.dumps(collection)
+    return collection

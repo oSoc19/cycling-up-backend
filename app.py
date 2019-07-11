@@ -31,7 +31,7 @@ def api_ping():
 def getMapHistorical():
     # extract argument from request
     date = request.args.get('date')
-    return jsonify(data=getters.getMatchedFeaturesHistorical(date))
+    return jsonify(getters.getMatchedFeaturesHistorical(date))
 
 
 def configure_app():

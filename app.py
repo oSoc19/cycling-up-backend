@@ -26,17 +26,39 @@ def api_ping():
 
 
 
-# annotation specifies route
-@app.route("/api/map/historical")
+### historical infra map ###
+@app.route("/api/map/historical/")
 def getMapHistorical():
     # extract argument from request
     date = request.args.get('date')
-    return jsonify(data=getters.getMatchedFeaturesHistorical(date))
+    return jsonify(getters.getMatchedFeaturesHistorical(date))
+
+### general map ###
+@app.route("/api/map/general/<kind>")
+def getMapBicyclePump(kind):
+    data = getters.getJsonContents(kind)
+    if data is not None:
+        return jsonify(data)
+    else:
+        return not_found()
+
+
+# file not found error
+@app.errorhandler(404)
+def not_found():
+    message = {
+        'status': 404,
+        'message': 'File not found!'
+    }
+    resp = jsonify(message)
+    resp.status_code = 404
+
+    return resp
+
 
 
 def configure_app():
     return app
-
 
 if __name__ == "__main__":
     configure_app()

@@ -1,8 +1,14 @@
 from flask import Flask
 from flask import request, make_response, jsonify
+from flask_compress import Compress
+
+
 import api.getters as getters
 
+
 app = Flask(__name__)
+Compress(app)
+
 
 @app.route('/')
 @app.route('/ping')
@@ -23,6 +29,10 @@ def getMapHistorical():
     return jsonify(data=getters.getMatchedFeaturesHistorical(date))
 
 
+def configure_app():
+    return app
+
 
 if __name__ == "__main__":
+    configure_app()
     app.run(debug=True)

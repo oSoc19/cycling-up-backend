@@ -27,24 +27,33 @@ def api_ping():
 
 
 ### historical infra map ###
-@app.route("/api/map/historical")
+@app.route("/api/map/historical/")
 def getMapHistorical():
     # extract argument from request
     date = request.args.get('date')
     return jsonify(getters.getMatchedFeaturesHistorical(date))
 
 ### general map ###
-@app.route("/api/map/general/bike_pump")
-def getMapBicyclePump():
-    return jsonify(getters.getJsonContents('process_data/data/bike_pump.json'))
+@app.route("/api/map/general/<kind>")
+def getMapBicyclePump(kind):
+    data = getters.getJsonContents(kind)
+    if data is not None:
+        return jsonify(data)
+    else:
+        return not_found()
 
-@app.route("/api/map/general/bike_parking")
-def getMapBikeParking():
-    return jsonify(getters.getJsonContents('process_data/data/bike_parking.json'))
 
-@app.route("/api/map/general/bike_shop")
-def getMapBikeShop():
-    return jsonify(getters.getJsonContents('process_data/data/bike_shop.json'))
+# file not found error
+@app.errorhandler(404)
+def not_found():
+    message = {
+        'status': 404,
+        'message': 'File not found!'
+    }
+    resp = jsonify(message)
+    resp.status_code = 404
+
+    return resp
 
 
 

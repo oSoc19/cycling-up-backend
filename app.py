@@ -37,6 +37,10 @@ def getMapHistorical():
 def getMapBicyclePumps():
     return jsonify(getters.getJsonContents('process_data/data/bike_pump.json'))
 
+@app.route("/api/map/bike_parking")
+def getMapBikeParking():
+    return jsonify(getters.getJsonContents('process_data/data/bike_parking.json'))
+
 def configure_app():
     return app
 

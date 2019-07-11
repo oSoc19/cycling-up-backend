@@ -35,13 +35,12 @@ def getMatchedFeaturesHistorical(date=2019):
 
 
 
-def getBicyclePumps():
+def getJsonContents(path):
     """
-    Returns geojson file containing geometry and metadata about the 
-    installed bicycle pumps in Brussels.
+    Returns json data read from file at the given path.
     """
 
-    with open("process_data/data/bike_pump.json", 'r') as f:
+    with open(path, 'r') as f:
         data = json.loads(f.read())
     
     return data

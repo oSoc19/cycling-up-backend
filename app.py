@@ -1,8 +1,16 @@
 from flask import Flask
-from flask import request
+from flask import request, make_response, jsonify
 import api.getters as getters
 
 app = Flask(__name__)
+
+@app.route('/')
+@app.route('/ping')
+@app.route('/api/ping')
+def api_ping():
+    return jsonify(message="Yello World !")
+
+
 
 # annotation specifies route
 @app.route("/api/map/historical")

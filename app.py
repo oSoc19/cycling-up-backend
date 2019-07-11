@@ -1,13 +1,18 @@
 from flask import Flask
 from flask import request, make_response, jsonify
 from flask_compress import Compress
-
+from flask_cors import CORS
 
 import api.getters as getters
 
 
 app = Flask(__name__)
+
+# Compress each response which content-length > 600
 Compress(app)
+
+# Enable CORS headers on each api routes
+CORS(app, allow_headers='Content-Type')
 
 
 @app.route('/')

@@ -26,13 +26,14 @@ def api_ping():
 
 
 
-# annotation specifies route
+### historical infra map ###
 @app.route("/api/map/historical")
 def getMapHistorical():
     # extract argument from request
     date = request.args.get('date')
     return jsonify(getters.getMatchedFeaturesHistorical(date))
 
+### general map ###
 @app.route("/api/map/general/bike_pump")
 def getMapBicyclePump():
     return jsonify(getters.getJsonContents('process_data/data/bike_pump.json'))
@@ -45,9 +46,10 @@ def getMapBikeParking():
 def getMapBikeShop():
     return jsonify(getters.getJsonContents('process_data/data/bike_shop.json'))
 
+
+
 def configure_app():
     return app
-
 
 if __name__ == "__main__":
     configure_app()

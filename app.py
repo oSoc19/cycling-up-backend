@@ -8,6 +8,9 @@ app = Flask(__name__)
 @app.route('/ping')
 @app.route('/api/ping')
 def api_ping():
+    """
+    Route to check the connectivity
+    """
     return jsonify(message="Yello World !")
 
 
@@ -17,7 +20,9 @@ def api_ping():
 def getMapHistorical():
     # extract argument from request
     date = request.args.get('date')
-    return getters.getMatchedFeaturesHistorical(date)
+    return jsonify(data=getters.getMatchedFeaturesHistorical(date))
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

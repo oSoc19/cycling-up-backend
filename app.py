@@ -16,7 +16,6 @@ CORS(api, allow_headers="Content-Type")
 
 
 @api.route("/")
-@api.route("/ping")
 @api.route("/api/ping")
 def api_ping():
     """
@@ -67,7 +66,7 @@ def _internal_server_error(
 
 # The default_error_handler  will not return any response
 # if the Flask application  is running in DEBUG mode.
-@app.errorhandler
+@api.errorhandler
 def default_error_handler(err):
     msg = "An unhandled exception occurred. ==> {}".format(str(err))
     # logger.error(msg)

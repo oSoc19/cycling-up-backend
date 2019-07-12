@@ -15,7 +15,6 @@ geojson = "*"
 flask-compress = "==1.4.0"
 flask-cors = "*"
 gunicorn = "*"
-connexion = "*"
 
 [requires]
 python_version = "3.7"

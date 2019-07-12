@@ -10,4 +10,4 @@ RUN pipenv install --system --deploy
 RUN chmod +x app.py
 
 # CMD ["python", "app.py"]
-CMD ["gunicorn", "--workers=6", "--bind=0.0.0.0:5000", "--name=backend", "app:api"]
+CMD ["gunicorn", "--workers=16", "--bind=0.0.0.0:5000", "--name=backend", "app:api"]

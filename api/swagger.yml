@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  title: cycling-up-api
+  version: 0.0.1
+  description: API for cycling-up. To retrieve and gather map data
+
+# Name of the license and a URL to the license description.
+license:
+  name: MIT
+  url: https://spdx.org/licenses/MIT.html
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+servers:
+  - url: http://0.0.0.0:5000
+    description: Development server
+  - url: http://0.0.0.0:5005
+    description: Production server
+- basePath: /api
+
+# Paths supported by the server application
+paths:
+  /:
+    get:
+      summary: Check the health (connectivity) of the API
+      operationId: api_ping
+      responses:
+        '200':
+          description: >
+            Simple message `Yello World !`
+  /ping:
+    get:
+      summary: Check the health (connectivity) of the API
+      operationId: api_ping
+      responses:
+        '200':
+          description: >
+            Simple message `Yello World !`
+  /api/ping:
+    get:
+      summary: Check the health (connectivity) of the API
+      operationId: api_ping
+      responses:
+        '200':
+          description: >
+            Simple message `Yello World !`
+  /api/map/historical/{year}:
+    get:
+      data: people.read
+      summary: The 
+      description: Read the list of people
+      parameters:
+        - in: path
+          name: year
+          type: int
+          description: The requirred year of the map data
+          required: true
+      responses:
+        200:
+          description: Successful geojson data about the requested map
+          schema:
+            type: object
+              properties:
+                fname:
+                  type: string
+                lname:
+                  type: string

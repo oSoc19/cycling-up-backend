@@ -26,11 +26,10 @@ def api_ping():
 
 
 ### historical infra map ###
-@api.route("/api/map/historical/")
-def getHistoricalMap():
+@api.route("/api/map/historical/<year>")
+def getMapHistorical(year):
     # extract argument from request
-    date = request.args.get("date")
-    return jsonify(getters.getMatchedFeaturesHistorical(date))
+    return jsonify(getters.getMatchedFeaturesHistorical(year))
 
 
 ### general map ###

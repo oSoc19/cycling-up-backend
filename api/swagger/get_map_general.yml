@@ -1,0 +1,164 @@
+Retrieve the general map
+---
+parameters:
+  - name: kind
+    in: path
+    description: The required kind of the map data
+    required: true
+    type: string
+    enum:
+      - bike_infra
+      - bike_parking
+      - bike_pump
+      - bike_shop
+      - bike_villo
+responses:
+  200:
+    description: Successful GeoJSon data about the requested map
+    schema:
+      $ref: "#/definitions/GeoJSon"
+    examples:
+      application/json:
+        type: FeatureCollection
+        features:
+        - type: Feature
+          geometry:
+            type: Point
+            coordinates:
+            - 102
+            - 0.5
+          properties:
+            prop0: value0
+        - type: Feature
+          geometry:
+            type: LineString
+            coordinates:
+            - - 102
+              - 0
+            - - 103
+              - 1
+            - - 104
+              - 0
+            - - 105
+              - 1
+          properties:
+            prop0: value0
+            prop1: 0
+        - type: Feature
+          geometry:
+            type: Polygon
+            coordinates:
+            - - - 100
+                - 0
+              - - 101
+                - 0
+              - - 101
+                - 1
+              - - 100
+                - 1
+              - - 100
+                - 0
+          properties:
+            prop0: value0
+            prop1:
+              this: that
+definitions:
+  - schema:
+      # GeoJSon:
+      id: GeoJSon
+      type: object
+      description: >
+        GeoJSon is a format for encoding a variety of geographic data structures using JavaScript Object Notation (JSON) [RFC7159].
+        A GeoJSon object may represent a region of space (a Geometry), a spatially bounded entity (a Feature), or a list of Features (a FeatureCollection)
+      discriminator: type
+      required:
+        - type
+        - features
+      externalDocs:
+        url: https://tools.ietf.org/html/rfc7946
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/definitions/Feature'
+
+      # Feature:
+      #   type: object
+      #   description: GeoJSon Feature
+      #   required:
+      #   - type
+      #   - id
+      #   - geometry
+      #   externalDocs:
+      #     url: https://tools.ietf.org/html/rfc7946#section-3.2
+      #   properties:
+      #     type:
+      #       type: string
+      #       enum:
+      #         - Feature
+      #     id:
+      #       type: integer
+      #     geometry:
+      #       $ref: '#/definitions/GeometryCollection'
+      #     properties:
+      #       type: object
+
+      # GeometryCollection:
+      #   type: object
+      #   description: GeoJSon geometry collection
+      #   required:
+      #   - type
+      #   - geometries
+      #   externalDocs:
+      #     url: https://tools.ietf.org/html/rfc7946#section-3.1
+      #   properties:
+      #     type:
+      #       type: string
+      #       enum:
+      #       - GeometryCollection
+      #     geometries:
+      #       type: array
+      #       items:
+      #         $ref: '#/definitions/Geometry'
+
+      # GeometryCollection:
+      #   type: object
+      #   description: GeoJSon geometry collection
+      #   required:
+      #   - type
+      #   - geometries
+      #   externalDocs:
+      #     url: https://tools.ietf.org/html/rfc7946#section-3.1
+      #   properties:
+      #     type:
+      #       type: string
+      #       enum:
+      #       - GeometryCollection
+      #     geometries:
+      #       type: array
+      #       items:
+      #         $ref: '#/definitions/Geometry'
+
+      # Geometry:
+      #   type: object
+      #   description: GeoJSon geometry
+      #   discriminator: type
+      #   required:
+      #     - type
+      #   externalDocs:
+      #     url: https://tools.ietf.org/html/rfc7946#section-3.1
+      #   properties:
+      #     type:
+      #       type: string
+      #       enum:
+      #       - Point
+      #       - LineString
+      #       - Polygon
+      #       - MultiPoint
+      #       - MultiLineString
+      #       - MultiPolygon
+      #       description: the geometry type

@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 from flask import Flask
 from flask import request, make_response, jsonify
 from flask_compress import Compress
 from flask_cors import CORS
-from flask_swagger import swagger
+from flasgger import Swagger, swag_from
+
 
 import api.getters as getters
 
@@ -16,51 +19,37 @@ Compress(api)
 CORS(api, allow_headers="Content-Type")
 
 
-@api.route("/api/spec")
-def api_doc():
-    import json, collections
-
-    swag_spec = swagger(api, from_file_keyword="swagger_from_file")
-
-    # Import api basic info
-    with open("./api/swagger/api_info.json") as fp:
-        api_info = json.load(fp, object_pairs_hook=collections.OrderedDict)
-    for key, item in api_info.items():
-        swag_spec[key] = item
-
-    return jsonify(swag_spec)
-
-
 @api.route("/")
 @api.route("/api/ping")
+@swag_from("api/swagger/get_ping.yml")
 def api_ping():
     """
     Route to check the connectivity
 
-    swagger_from_file: api/swagger/get_ping.yml
+    swagger_from_file:
     """
     return jsonify(message="Yello World !")
 
 
-### GET historical infra map ###
 @api.route("/api/map/historical/<int:year>")
+@swag_from("api/swagger/get_map_historical.yml")
 def getMapHistorical(year):
     """
     Get the historical map
 
-    swagger_from_file: api/swagger/get_map_historical.yml
+    swagger_from_file:
     """
 
     return jsonify(getters.getMatchedFeaturesHistorical(year))
 
 
-### GET general map ###
 @api.route("/api/map/general/<string:kind>")
+@swag_from("api/swagger/get_map_general.yml")
 def getGeneralMap(kind):
     """
     Retrieve the general map
 
-    swagger_from_file: api/swagger/get_map_general.yml
+    swagger_from_file:
     """
 
     data = getters.getJsonContents(kind)
@@ -105,7 +94,46 @@ def default_error_handler(err):
     return jsonify({"status": 500, "message": msg}), 500
 
 
+def _configure_api_doc():
+    import json, collections
+
+    # Import api basic info
+    # with open("/api_info.json") as fp:
+    # api_info = json.load(fp, object_pairs_hook=collections.OrderedDict)
+
+    # Customize default configurations
+    swagger_config = {
+        "headers": [],
+        "specs": [
+            {
+                "endpoint": "/api/spec",
+                "route": "/api/spec",
+                "rule_filter": lambda rule: True,  # all in
+                "model_filter": lambda tag: True,  # all in
+            }
+        ],
+        "static_url_path": "/flasgger_static",
+        # "static_folder": "static",  # must be set by user
+        "swagger_ui": True,
+        "specs_route": "/api/doc",
+    }
+
+    swag_spec = Swagger(
+        api, config=swagger_config, template_file="api/swagger/template_api_info.yml"
+    )
+
+    return swag_spec
+
+
 def configure_api():
+    # Compress each response which content-length > 600
+    Compress(api)
+
+    # Enable CORS headers on each api routes
+    CORS(api, allow_headers="Content-Type")
+
+    _configure_api_doc()
+
     return api
 
 

@@ -2,12 +2,12 @@ Check the health (connectivity) of the API
 Route to check the API connectivity
 ---
 definitions:
-  - schema:
-      id: Yello
-      properties:
-        message:
-         type: string
-         description: Yello World !
+  YelloMsg:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Yello World !
 responses:
   200:
     description: >

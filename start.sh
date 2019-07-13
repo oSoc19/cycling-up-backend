@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# Load environment variables from .env
+# Check if .env file exists
 if [ ! -f .env ]
 then
-	set -o allexport
-	source .env
-	set +o allexport
+	cp .env.example .env
 fi
+
+# Load environment variables from .env
+set -o allexport
+source .env
+set +o allexport
 
 
 app_name="cycling-up-api"

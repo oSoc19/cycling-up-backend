@@ -6,105 +6,55 @@ from flask_compress import Compress
 from flask_cors import CORS
 from flasgger import Swagger, swag_from
 
+import logging
 
-import api.getters as getters
-
-
-api = Flask(__name__)
-
-# Compress each response which content-length > 600
-Compress(api)
-
-# Enable CORS headers on each api routes
-CORS(api, allow_headers="Content-Type")
+from config import get_config_by_env_mode, ProductionConfig
+from api.routes import configure_api_routes
+from api.error_handlers import configure_error_handlers
 
 
-@api.route("/")
-@api.route("/api/ping")
-@swag_from("api/swagger/get_ping.yml")
-def api_ping():
-    """
-    Route to check the connectivity
-    """
-    return jsonify(message="Yello World !")
+def configure_api(config=ProductionConfig):
+    api = Flask(__name__)
+
+    # Compress each response which content-length > 600
+    Compress(api)
+
+    _configure_api_doc(api, config)
 
 
-@api.route("/api/map/historical/<int:year>")
-@swag_from("api/swagger/get_map_historical.yml")
-def getMapHistorical(year):
-    """
-    Get the historical map
-    """
-
-    return jsonify(getters.getMatchedFeaturesHistorical(year))
+    # Enable CORS headers on each api routes
+    # CORS(api, allow_headers="Content-Type")
 
 
-@api.route("/api/map/general/<string:kind>")
-@swag_from("api/swagger/get_map_general.yml")
-def getGeneralMap(kind):
-    """
-    Retrieve the general map
-    """
+    configure_api_routes(api, config)
 
-    data = getters.getJsonContents(kind)
-    if data is not None:
-        return jsonify(data)
+    configure_error_handlers(api, config)
+
+    return api
+
+
+def _configure_api_logging(api, config):
+    if log_to_stdout:
+        stream_handler = logging.StreamHandler()
+        logging.root.addHandler(stream_handler)
     else:
-        return _not_found()
-
-@api.route("/api/map/live_bike/<string:kind>")
-@swag_from("api/swagger/get_map_bike_count.yml")
-def getLiveBikeCount(kind):
-    """
-    Retrieve live bike count data or GFR map.
-    """
-    if kind == "count":
-        data = getters.getBikeCount()
-        return jsonify(data)
-    elif kind == "GFR":
-        data = getters.getJsonContents("bike_icr")
-        return jsonify(data)
-    else:
-        return _not_found()
-    
+        os.makedirs(LOG_DIR, exist_ok=True)
+        logging.info('%s.log' % log_instance)
+        formatter = RequestFormatter(
+            '[%(asctime)s] %(remote_addr)s requested %(url)s\n'
+            '%(levelname)s in %(pathname)s: %(message)s'
+        )
 
 
-# 404 - NOT FOUND
-@api.errorhandler(404)
-def _not_found(msg="😭 File not found!"):
-    message = {"status": 404, "message": str(msg)}
-    resp = jsonify(message)
-    resp.status_code = 404
+        my_file_handler.setFormatter(logging.Formatter(
+            '%(asctime)s  %(remote_addr)s requested %(url)s\n%(levelname)s:[in :%(lineno)d] %(message)s '))
+        logging.root.addHandler(my_file_handler)
 
-    return resp
+    logging.root.setLevel(logging.INFO)
+    logging.root.info('[Config] Logging : DONE ')
 
 
-# 405 - METHOD_NOT_ALLOWED
-@api.errorhandler(405)
-def _method_not_allowed(msg="This method is not supported for this request !"):
-    return jsonify({"status": 405, "message": msg}), 405
-
-
-# 500 - INTERNAL_SERVER_ERROR
-@api.errorhandler(500)
-def _internal_server_error(
-    msg="Something, somewhere, has gone sideways.\nSo basically, shit happens..."
-):
-    return jsonify({"status": 500, "message": str(msg)}), 500
-
-
-# The default_error_handler  will not return any response
-# if the Flask application  is running in DEBUG mode.
-@api.errorhandler
-def default_error_handler(err):
-    msg = "An unhandled exception occurred. ==> {}".format(str(err))
-    # logger.error(msg)
-
-    # if not settings.FLASK_DEBUG:
-    return jsonify({"status": 500, "message": msg}), 500
-
-
-def _configure_api_doc():
+def _configure_api_doc(api, config):
     import json, collections
 
     # Import api basic info
@@ -135,18 +85,9 @@ def _configure_api_doc():
     return swag_spec
 
 
-def configure_api():
-    # Compress each response which content-length > 600
-    Compress(api)
-
-    # Enable CORS headers on each api routes
-    CORS(api, allow_headers="Content-Type")
-
-    _configure_api_doc()
-
-    return api
 
 
 if __name__ == "__main__":
-    configure_api()
-    api.run(debug=False, host="0.0.0.0")
+    Config = get_config_by_env_mode()
+    app = configure_api(Config)
+    app.run(debug=Config.DEBUG, host="0.0.0.0")

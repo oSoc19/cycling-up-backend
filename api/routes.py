@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask
-from flask import request, make_response, jsonify
+from flask import request, make_response, jsonify,abort
 from flask_compress import Compress
 from flask_cors import CORS
 from flasgger import Swagger, swag_from
@@ -42,7 +42,7 @@ def configure_api_routes(api:Flask, config) -> None:
         if data is not None:
             return jsonify(data)
         else:
-            return _not_found()
+            return abort(404)
 
     @api.route("/api/map/live_bike/<string:kind>")
     @swag_from("api/swagger/get_map_bike_count.yml")
@@ -57,5 +57,5 @@ def configure_api_routes(api:Flask, config) -> None:
             data = getters.getJsonContents("bike_icr")
             return jsonify(data)
         else:
-            return _not_found()
+            return abort(404)
 

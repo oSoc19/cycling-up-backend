@@ -53,6 +53,7 @@ def getGeneralMap(kind):
         return _not_found()
 
 @api.route("/api/map/live_bike/<string:kind>")
+@swag_from("api/swagger/get_map_bike_count.yml")
 def getLiveBikeCount(kind):
     """
     Retrieve live bike count data

@@ -56,7 +56,7 @@ def getGeneralMap(kind):
 @swag_from("api/swagger/get_map_bike_count.yml")
 def getLiveBikeCount(kind):
     """
-    Retrieve live bike count data
+    Retrieve live bike count data or GFR map.
     """
     if kind == "count":
         data = getters.getBikeCount()

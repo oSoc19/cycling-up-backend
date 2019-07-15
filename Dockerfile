@@ -1,7 +1,13 @@
 FROM python:3.7
 
+ENV TZ="Europe/Brussels"
+
 COPY . /backend
 WORKDIR /backend
+
+RUN apt-get update \
+    && apt-get install -y cron \
+    && apt-get autoremove -y
 
 RUN pip install pipenv gunicorn
 

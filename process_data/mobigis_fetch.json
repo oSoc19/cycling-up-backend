@@ -20,6 +20,10 @@
         {
             "url" : "&typeName=bm_bike:bicyclestore",
             "save_as" : "bike_shop.json"
+        },
+        {
+            "url" : "&typeName=bm_bike:icr",
+            "save_as" : "bike_icr.json"
         }
        
     ]

@@ -52,6 +52,22 @@ def getGeneralMap(kind):
     else:
         return _not_found()
 
+@api.route("/api/map/live_bike/<string:kind>")
+@swag_from("api/swagger/get_map_bike_count.yml")
+def getLiveBikeCount(kind):
+    """
+    Retrieve live bike count data or GFR map.
+    """
+    if kind == "count":
+        data = getters.getBikeCount()
+        return jsonify(data)
+    elif kind == "GFR":
+        data = getters.getJsonContents("bike_icr")
+        return jsonify(data)
+    else:
+        return _not_found()
+    
+
 
 # 404 - NOT FOUND
 @api.errorhandler(404)
@@ -133,4 +149,4 @@ def configure_api():
 
 if __name__ == "__main__":
     configure_api()
-    api.run(debug=True, host="0.0.0.0")
+    api.run(debug=False, host="0.0.0.0")

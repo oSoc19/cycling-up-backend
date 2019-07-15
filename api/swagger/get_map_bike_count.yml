@@ -1,0 +1,61 @@
+Retrieve the bike count map data
+---
+parameters:
+  - name: kind
+    in: path
+    description: The required kind of the map data
+    required: true
+    type: string
+    enum:
+      - count
+      - GFR
+responses:
+  200:
+    description: Successful GeoJSon data about the requested map
+    schema:
+      $ref: "#/definitions/GeoJSon"
+    examples:
+      application/json:
+        type: FeatureCollection
+        features:
+        - type: Feature
+          geometry:
+            type: Point
+            coordinates:
+            - 102
+            - 0.5
+          properties:
+            prop0: value0
+        - type: Feature
+          geometry:
+            type: LineString
+            coordinates:
+            - - 102
+              - 0
+            - - 103
+              - 1
+            - - 104
+              - 0
+            - - 105
+              - 1
+          properties:
+            prop0: value0
+            prop1: 0
+        - type: Feature
+          geometry:
+            type: Polygon
+            coordinates:
+            - - - 100
+                - 0
+              - - 101
+                - 0
+              - - 101
+                - 1
+              - - 100
+                - 1
+              - - 100
+                - 0
+          properties:
+            prop0: value0
+            prop1:
+              this: that

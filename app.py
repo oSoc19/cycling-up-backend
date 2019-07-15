@@ -53,11 +53,11 @@ def getGeneralMap(kind):
         return _not_found()
 
 @api.route("/api/map/live_bike/<string:time_res>")
-def getLiveBikeCount():
+def getLiveBikeCount(time_res):
     """
     Retrieve live bike count data
     """
-    data = {}
+    data = getters.getBikeCount(time_res)
     return jsonify(data)
 
 

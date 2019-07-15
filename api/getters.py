@@ -1,6 +1,7 @@
 import json
 from geojson import FeatureCollection
 import os
+import requests
 from process_data.fetch_convert import DATA_DIR
 
 
@@ -51,3 +52,15 @@ def getJsonContents(kind):
             data = json.load(f)
         
     return data
+
+
+def getBikeCount(time_res):
+    """
+    Returns live bike count data from opendata.brussels API.
+    """
+    # should return live count data for all available count locations.
+    # time_res can be year_cnt, day_cnt or hour_cnt.
+
+    return {}
+
+

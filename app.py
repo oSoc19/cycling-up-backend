@@ -75,8 +75,7 @@ def getVilloData(kind):
     Retrieve villo information as requested by 'kind'.
     """
     if kind == "stations":
-        # TODO
-        data = {}
+        data = getters.getJsonContents("bike_villo")
         return jsonify(data)
     elif kind == "live":
         # TODO

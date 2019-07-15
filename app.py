@@ -52,21 +52,20 @@ def getGeneralMap(kind):
     else:
         return _not_found()
 
-@api.route("/api/map/live_bike/count")
-def getLiveBikeCount():
+@api.route("/api/map/live_bike/<str:kind>")
+def getLiveBikeCount(kind):
     """
     Retrieve live bike count data
     """
-    data = getters.getBikeCount()
-    return jsonify(data)
-
-@api.route("api/map/live_bike/GFR")
-def getGfrMap():
-    """
-    Retrieve GFR map data
-    """
-    data = {}
-    return data
+    if kind == "count":
+        data = getters.getBikeCount()
+        return jsonify(data)
+    elif kind == "GFR":
+        data = {}
+        return data
+    else:
+        return _not_found()
+    
 
 
 # 404 - NOT FOUND

@@ -12,10 +12,11 @@ flask = "*"
 requests = "*"
 pyproj = "*"
 geojson = "*"
-flask-compress = "==1.4.0"
+flask-compress = "~=1.4.0"
 flask-cors = "*"
 gunicorn = "*"
 flasgger = "*"
+python-dotenv = "~=0.10.3"
 
 [requires]
 python_version = "3.7"

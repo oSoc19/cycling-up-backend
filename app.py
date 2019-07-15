@@ -19,12 +19,10 @@ def configure_api(config=ProductionConfig):
     # Compress each response which content-length > 600
     Compress(api)
 
-    _configure_api_doc(api, config)
-
-
     # Enable CORS headers on each api routes
-    # CORS(api, allow_headers="Content-Type")
+    CORS(api, allow_headers="Content-Type")
 
+    _configure_api_doc(api, config)
 
     configure_api_routes(api, config)
 
@@ -39,27 +37,25 @@ def _configure_api_logging(api, config):
         logging.root.addHandler(stream_handler)
     else:
         os.makedirs(LOG_DIR, exist_ok=True)
-        logging.info('%s.log' % log_instance)
+        logging.info("%s.log" % log_instance)
         formatter = RequestFormatter(
-            '[%(asctime)s] %(remote_addr)s requested %(url)s\n'
-            '%(levelname)s in %(pathname)s: %(message)s'
+            "[%(asctime)s] %(remote_addr)s requested %(url)s\n"
+            "%(levelname)s in %(pathname)s: %(message)s"
         )
 
-
-        my_file_handler.setFormatter(logging.Formatter(
-            '%(asctime)s  %(remote_addr)s requested %(url)s\n%(levelname)s:[in :%(lineno)d] %(message)s '))
+        my_file_handler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s  %(remote_addr)s requested %(url)s\n%(levelname)s:[in :%(lineno)d] %(message)s "
+            )
+        )
         logging.root.addHandler(my_file_handler)
 
     logging.root.setLevel(logging.INFO)
-    logging.root.info('[Config] Logging : DONE ')
+    logging.root.info("[Config] Logging : DONE ")
 
 
 def _configure_api_doc(api, config):
     import json, collections
-
-    # Import api basic info
-    # with open("/api_info.json") as fp:
-    # api_info = json.load(fp, object_pairs_hook=collections.OrderedDict)
 
     # Customize default configurations
     swagger_config = {
@@ -83,8 +79,6 @@ def _configure_api_doc(api, config):
     )
 
     return swag_spec
-
-
 
 
 if __name__ == "__main__":

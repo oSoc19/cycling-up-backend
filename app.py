@@ -60,6 +60,14 @@ def getLiveBikeCount():
     data = getters.getBikeCount()
     return jsonify(data)
 
+@api.route("api/map/live_bike/GFR")
+def getGfrMap():
+    """
+    Retrieve GFR map data
+    """
+    data = {}
+    return data
+
 
 # 404 - NOT FOUND
 @api.errorhandler(404)

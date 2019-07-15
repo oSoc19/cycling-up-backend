@@ -70,7 +70,7 @@ def getLiveBikeCount(kind):
 
 @api.route("/api/map/villo/<string:kind>")
 @swag_from("api/swagger/get_villo_data.yml")
-def getLiveBikeCount(kind):
+def getVilloData(kind):
     """
     Retrieve villo information as requested by 'kind'.
     """

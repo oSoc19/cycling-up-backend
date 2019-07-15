@@ -60,7 +60,7 @@ def getBikeCount(time_res):
     """
     # should return live count data for all available count locations.
     # time_res can be year_cnt, day_cnt or hour_cnt.
-
+    # TODO
     return {}
 
 

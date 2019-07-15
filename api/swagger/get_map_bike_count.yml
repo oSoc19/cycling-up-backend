@@ -1,4 +1,4 @@
-Retrieve the general map
+Retrieve the bike count map data
 ---
 parameters:
   - name: kind

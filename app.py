@@ -25,8 +25,6 @@ CORS(api, allow_headers="Content-Type")
 def api_ping():
     """
     Route to check the connectivity
-
-    swagger_from_file:
     """
     return jsonify(message="Yello World !")
 
@@ -36,8 +34,6 @@ def api_ping():
 def getMapHistorical(year):
     """
     Get the historical map
-
-    swagger_from_file:
     """
 
     return jsonify(getters.getMatchedFeaturesHistorical(year))
@@ -48,8 +44,6 @@ def getMapHistorical(year):
 def getGeneralMap(kind):
     """
     Retrieve the general map
-
-    swagger_from_file:
     """
 
     data = getters.getJsonContents(kind)

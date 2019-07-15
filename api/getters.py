@@ -54,12 +54,10 @@ def getJsonContents(kind):
     return data
 
 
-def getBikeCount(time_res):
+def getBikeCount():
     """
     Returns live bike count data from opendata.brussels API.
     """
-    # should return live count data for all available count locations.
-    # time_res can be year_cnt, day_cnt or hour_cnt.
     
     req = requests.get("http://data-mobility.brussels/geoserver/bm_bike/wfs?service=wfs&version=1.1.0&request=GetFeature&srsName=EPSG:4326&outputFormat=json")
     return req.content

@@ -62,7 +62,7 @@ def getLiveBikeCount(kind):
         return jsonify(data)
     elif kind == "GFR":
         data = {}
-        return data
+        return getters.getJsonContents("bike_icr")
     else:
         return _not_found()
     

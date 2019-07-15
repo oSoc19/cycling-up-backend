@@ -52,7 +52,7 @@ def getGeneralMap(kind):
     else:
         return _not_found()
 
-@api.route("/api/map/live_bike/<str:kind>")
+@api.route("/api/map/live_bike/<string:kind>")
 def getLiveBikeCount(kind):
     """
     Retrieve live bike count data

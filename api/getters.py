@@ -62,5 +62,10 @@ def getBikeCount():
     data = requests.get(link).text
     return json.loads(data)
 
+def getLiveVilloData():
+
+    # TODO
+    return {}
+
 
 

@@ -170,4 +170,4 @@ def configure_api():
 
 if __name__ == "__main__":
     configure_api()
-    api.run(debug=False, host="0.0.0.0")
+    api.run(debug=True, host="0.0.0.0")

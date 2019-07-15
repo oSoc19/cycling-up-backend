@@ -1,0 +1,110 @@
+---
+swagger: '2.0'
+info:
+  title: cycling-up-api
+  version: 0.0.1
+  license:
+    name: MIT
+    url: https://spdx.org/licenses/MIT.html
+consumes:
+- application/json
+produces:
+- application/json
+definitions:
+  GeoJSon:
+    id: GeoJSon
+    type: object
+    description: GeoJSon is a format for encoding a variety of geographic data structures using JavaScript Object Notation (JSON) [RFC7159].  A GeoJSon object may represent a region of space (a Geometry), a spatially bounded entity (a Feature), or a list of Features (a FeatureCollection)
+    discriminator: type
+    required:
+      - type
+      - features
+    externalDocs:
+      url: https://tools.ietf.org/html/rfc7946
+    properties:
+      type:
+        type: string
+        enum:
+        - FeatureCollection
+      features:
+        type: array
+        items:
+          $ref: '#/definitions/Feature'
+
+  Feature:
+    type: object
+    description: GeoJSon Feature
+    required:
+    - type
+    - id
+    - geometry
+    externalDocs:
+      url: https://tools.ietf.org/html/rfc7946#section-3.2
+    properties:
+      type:
+        type: string
+        enum:
+          - Feature
+      id:
+        type: integer
+      geometry:
+        $ref: '#/definitions/GeometryCollection'
+      properties:
+        type: object
+
+  GeometryCollection:
+    type: object
+    description: GeoJSon geometry collection
+    required:
+    - type
+    - geometries
+    externalDocs:
+      url: https://tools.ietf.org/html/rfc7946#section-3.1
+    properties:
+      type:
+        type: string
+        enum:
+        - GeometryCollection
+      geometries:
+        type: array
+        items:
+          $ref: '#/definitions/Geometry'
+
+  GeometryCollection:
+    type: object
+    description: GeoJSon geometry collection
+    required:
+    - type
+    - geometries
+    externalDocs:
+      url: https://tools.ietf.org/html/rfc7946#section-3.1
+    properties:
+      type:
+        type: string
+        enum:
+        - GeometryCollection
+      geometries:
+        type: array
+        items:
+          $ref: '#/definitions/Geometry'
+
+  Geometry:
+    type: object
+    description: GeoJSon geometry
+    discriminator: type
+    required:
+      - type
+    externalDocs:
+      url: https://tools.ietf.org/html/rfc7946#section-3.1
+    properties:
+      type:
+        type: string
+        enum:
+        - Point
+        - LineString
+        - Polygon
+        - MultiPoint
+        - MultiLineString
+        - MultiPolygon
+        description: the geometry type
+

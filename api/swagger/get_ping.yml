@@ -1,0 +1,19 @@
+Check the health (connectivity) of the API
+Route to check the API connectivity
+---
+definitions:
+  YelloMsg:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Yello World !
+responses:
+  200:
+    description: >
+      Simple message `Yello World !`
+    schema:
+      type: object
+      properties:
+        message:
+          type: string

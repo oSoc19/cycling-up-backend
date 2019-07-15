@@ -66,6 +66,29 @@ def getLiveBikeCount(kind):
         return jsonify(data)
     else:
         return _not_found()
+
+
+@api.route("/api/map/villo/<string:kind>")
+@swag_from("api/swagger/get_villo_data.yml")
+def getLiveBikeCount(kind):
+    """
+    Retrieve villo information as requested by 'kind'.
+    """
+    if kind == "stations":
+        # TODO
+        data = {}
+        return jsonify(data)
+    elif kind == "live":
+        # TODO
+        data = {}
+        return jsonify(data)
+    elif kind == "historical":
+        # TODO
+        data = {}
+        return  jsonify(data)
+    else:
+        return _not_found()
+
     
 
 

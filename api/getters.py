@@ -66,6 +66,7 @@ def getLiveVilloData():
     """
     Returns live villo availability information
     """
+    # get live data from opendata.brussels API.
     link = "https://opendata.brussel.be/api/records/1.0/search/?dataset=villo-stations-beschikbaarheid-in-real-time"
     getJsonDataFrom(link)
 

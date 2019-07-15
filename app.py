@@ -52,6 +52,14 @@ def getGeneralMap(kind):
     else:
         return _not_found()
 
+@api.route("/api/map/live_bike/<string:time_res>")
+def getLiveBikeCount():
+    """
+    Retrieve live bike count data
+    """
+    data = {}
+    return jsonify(data)
+
 
 # 404 - NOT FOUND
 @api.errorhandler(404)

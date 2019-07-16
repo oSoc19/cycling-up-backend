@@ -29,3 +29,5 @@ docker run --rm \
     --publish ${external_port}:${flask_port} \
     --name=${app_name} \
     ${app_name}
+
+exit 0

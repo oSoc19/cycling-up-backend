@@ -50,6 +50,7 @@ using the `start.sh`_ script
 
 
 or using
+
 .. code-block:: bash
 
     $ docker build --tag cycling-up-api .

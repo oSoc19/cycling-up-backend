@@ -63,21 +63,3 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
-    @api.route("/api/map/live_bike/<string:kind>")
-    @swag_from("swagger/get_map_bike_count.yml")
-    def getLiveBikeCount(kind: str):
-        """
-        Retrieve live bike count data or GFR map.
-
-        Arguments:
-            kind {string} -- The required kind of map
-        """
-        if kind == "count":
-            data = getters.getBikeCount()
-            return jsonify(data)
-        elif kind == "GFR":
-            data = getters.getJsonContents("bike_icr")
-            return jsonify(data)
-        else:
-            return abort(404)
-

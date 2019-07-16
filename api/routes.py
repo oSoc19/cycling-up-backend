@@ -64,7 +64,7 @@ def configure_routes(api: Flask, config: dict) -> None:
             return abort(404)
 
     @api.route("/api/data/bike_count/<int:id>")
-    @swag_from("swagger/bike_count_data.yml")
+    @swag_from("swagger/get_bike_count_data.yml")
     def getBikeCountData(id: int):
         """
         Retrieve the bike count data, for the counting location corresponding to the given id.

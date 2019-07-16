@@ -26,7 +26,6 @@ def configure_routes(api: Flask, config: dict) -> None:
         None -- [description]
     """
 
-    @api.route("/")
     @api.route("/api/ping")
     @swag_from("swagger/get_ping.yml")
     def api_ping():
@@ -36,7 +35,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         return jsonify(message="Yello World !")
 
 
-    @api.route("/api/map/historical/years")
+    @api.route("/api/map/historical/years/")
     @swag_from("swagger/get_map_historical years.yml")
     def getMapHistoricalYears():
         """

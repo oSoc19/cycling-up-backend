@@ -1,22 +1,41 @@
+"""
+
+
+"""
+
+## Dependency
+
+# Standard
 import json
-from geojson import FeatureCollection
 import os
+
+# Third party
+from geojson import FeatureCollection
 import requests
+
+# Local
 from process_data.fetch_convert import DATA_DIR
 
 
 AVAILABLE_FILES = os.listdir(DATA_DIR)
 
 
-def getMatchedFeaturesHistorical(date=2019):
-    
-    
+def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
+    """[summary]
+
+    Keyword Arguments:
+        date {int} -- [description] (default: {2019})
+
+    Returns:
+        dict -- [description]
+    """
+
     # load geodata
-    with open(DATA_DIR+ '/bike_infra.json', 'r') as sourceFile:
+    with open(DATA_DIR + "/bike_infra.json", "r") as sourceFile:
         sourceData = json.loads(sourceFile.read())
 
     # load construction year data
-    with open('match_dates/construction_year.json', 'r') as sourceFile:
+    with open("match_dates/construction_year.json", "r") as sourceFile:
         constructionYears = json.loads(sourceFile.read())
 
     # generate list of correct gids
@@ -25,32 +44,35 @@ def getMatchedFeaturesHistorical(date=2019):
         if int(constructionYears[gid]) <= int(date):
             gids.append(int(gid))
 
-
     # select fautures older than or as ols as the give date
     requestedFeatures = []
-    for feature in sourceData['features']:
-        if feature['properties']['gid'] in gids:
+    for feature in sourceData["features"]:
+        if feature["properties"]["gid"] in gids:
             requestedFeatures.append(feature)
-
 
     # create geojson
     collection = FeatureCollection(requestedFeatures)
 
-    # return geojson as string
+    # return geojson as dict
     return collection
 
 
-
-def getJsonContents(kind):
+def getJsonContents(kind: str):
     """
     Returns json data read from file at the given path.
+
+    Arguments:
+        kind {string} -- The required kind of map which be interpreted as filename
+
+    Returns:
+        None -- The kind requested does not exists as geojson file
     """
-    if not(kind+'.json' in AVAILABLE_FILES):
+    if not (kind + ".json" in AVAILABLE_FILES):
         return None
-    else: 
-        with open('process_data/data/' + kind + '.json', 'r') as f:
+    else:
+        with open("process_data/data/" + kind + ".json", "r") as f:
             data = json.load(f)
-        
+
     return data
 
 
@@ -61,5 +83,4 @@ def getBikeCount():
     link = "http://data-mobility.brussels/geoserver/bm_bike/wfs?service=wfs&version=1.1.0&request=GetFeature&srsName=EPSG:4326&outputFormat=json&typeName=bm_bike:rt_counting"
     data = requests.get(link).text
     return json.loads(data)
-
 

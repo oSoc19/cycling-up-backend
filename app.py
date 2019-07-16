@@ -68,25 +68,6 @@ def getLiveBikeCount(kind):
         return _not_found()
 
 
-@api.route("/api/map/villo/<string:kind>")
-@swag_from("api/swagger/get_villo_data.yml")
-def getVilloData(kind):
-    """
-    Retrieve villo information as requested by 'kind'.
-    """
-    if kind == "stations":
-        data = getters.getJsonContents("bike_villo")
-        return jsonify(data)
-    elif kind == "historical":
-        # TODO
-        data = {}
-        return  jsonify(data)
-    else:
-        return _not_found()
-
-    
-
-
 # 404 - NOT FOUND
 @api.errorhandler(404)
 def _not_found(msg="😭 File not found!"):

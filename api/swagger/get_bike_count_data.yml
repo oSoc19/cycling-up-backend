@@ -5,7 +5,7 @@ parameters:
     in: path
     description: ID of the queried bicycle count location
     required: true
-    type: int
+    type: integer
     enum:
       - 0
       - 1
@@ -26,16 +26,46 @@ responses:
       $ref: "#/definitions/GeoJSon"
     examples:
       application/json:
-        type: Feature
+        type: FeatureCollection
+        features:
+        - type: Feature
           geometry:
             type: Point
             coordinates:
-            - 4.39892
-            - 50.839202
+            - 102
+            - 0.5
           properties:
-            name: Mérode
-            id: 3
-            count_data:
-              jan:
-                1998: 57
-                1999: 57
+            prop0: value0
+        - type: Feature
+          geometry:
+            type: LineString
+            coordinates:
+            - - 102
+              - 0
+            - - 103
+              - 1
+            - - 104
+              - 0
+            - - 105
+              - 1
+          properties:
+            prop0: value0
+            prop1: 0
+        - type: Feature
+          geometry:
+            type: Polygon
+            coordinates:
+            - - - 100
+                - 0
+              - - 101
+                - 0
+              - - 101
+                - 1
+              - - 100
+                - 1
+              - - 100
+                - 0
+          properties:
+            prop0: value0
+            prop1:
+              this: that

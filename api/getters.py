@@ -61,18 +61,6 @@ def getBikeCount():
     link = "http://data-mobility.brussels/geoserver/bm_bike/wfs?service=wfs&version=1.1.0&request=GetFeature&srsName=EPSG:4326&outputFormat=json&typeName=bm_bike:rt_counting"
     return getJsonDataFrom(link)
 
-
-def getLiveVilloData():
-    """
-    Returns live villo availability information
-    """
-    # get live data from opendata.brussels API.
-    link = "https://opendata.brussel.be/api/records/1.0/search/?dataset=villo-stations-beschikbaarheid-in-real-time"
-    return getJsonDataFrom(link)
-
-
 def getJsonDataFrom(link):
     data = requests.get(link).text
     return json.loads(data)
-
-

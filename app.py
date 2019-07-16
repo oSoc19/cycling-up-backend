@@ -77,9 +77,6 @@ def getVilloData(kind):
     if kind == "stations":
         data = getters.getJsonContents("bike_villo")
         return jsonify(data)
-    elif kind == "live":
-        data = getters.getLiveVilloData()
-        return jsonify(data)
     elif kind == "historical":
         # TODO
         data = {}

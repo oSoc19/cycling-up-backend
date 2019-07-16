@@ -9,11 +9,18 @@ Files
 
 The example application only needs very few files:
 
-* ``swagger.yaml``: the pet shop REST API Swagger definition
+* ``config.py``: This file contains most of the configuration
+                variables needed by the your app.
+* ``app.py``: implementation of the pet shop operations with in-memory storage
+* ``app.py``: implementation of the pet shop operations with in-memory storage
+
+* ``api/swagger.yaml``: the pet shop REST API Swagger definition
 * ``app.py``: implementation of the pet shop operations with in-memory storage
 * ``Pipfile``: list of required Python libraries (used by Pipenv)
 * ``Dockerfile``: to build the example as a runnable Docker image
-* ``test.sh``: shell script to execute example HTTP requests against the pet shop API
+* ``startup.sh``: shell script to execute the Docker image.
+                 Used in the production server
+
 
 Running Locally
 ===============

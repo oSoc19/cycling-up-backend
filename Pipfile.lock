@@ -187,7 +187,8 @@
         },
         "pyrsistent": {
             "hashes": [
-                "sha256:50cffebc87ca91b9d4be2dcc2e479272bcb466b5a0487b6c271f7ddea6917e14"
+                "sha256:50cffebc87ca91b9d4be2dcc2e479272bcb466b5a0487b6c271f7ddea6917e14",
+                "sha256:6492aa4aae8eb42c9c892aa75c220d3066486ab45264a4ea5d71018b194f0750"
             ],
             "version": "==0.15.3"
         },
@@ -337,6 +338,7 @@
         },
         "wrapt": {
             "hashes": [
+                "sha256:3675c688952a4c8daa387e53b77cbc97151d7d76834cae9057996047fb4810a2",
                 "sha256:565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1"
             ],
             "version": "==1.11.2"

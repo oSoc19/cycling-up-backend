@@ -1,0 +1,41 @@
+Retrieve a geojson point that contians historic bike count data as a property.
+---
+parameters:
+  - name: id
+    in: path
+    description: ID of the queried bicycle count location
+    required: true
+    type: int
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+
+responses:
+  200:
+    description: Successful GeoJSon point, containing count data as property.
+    schema:
+      $ref: "#/definitions/GeoJSon"
+    examples:
+      application/json:
+        type: Feature
+          geometry:
+            type: Point
+            coordinates:
+            - 4.39892
+            - 50.839202
+          properties:
+            name: Mérode
+            id: 3
+            count_data:
+              jan:
+                1998: 57
+                1999: 57

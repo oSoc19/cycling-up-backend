@@ -77,16 +77,30 @@ def getJsonContents(kind: str):
 
 
 def getBikeCountData(id):
+    """
+    Return a geojson feature containing historic count data as a property,
+    where its property 'id' matches the given id.
+    Return none when no such feature is found.
+    Arguments:
+        id {int} -- ID number of the requested geojson feature
+
+    Returns:
+        geojson feature {dict} -- the requested feature
+        None {} -- No matching feature was found 
+    """
+    # load historic count data
     with open('process_data/historic_data/historic_bike_counts.json', 'r') as source:
         data = json.load(source)
 
+    # list all valid IDs
     ids = []
     for feature in data['features']:
         ids.append(feature['properties']['id'])
     
+    # look for match
     if id in ids:
         requestedFeature = data['features'][ids.index(id)]
     else:
         requestedFeature = None
-        
+
     return requestedFeature

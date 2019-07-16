@@ -20,4 +20,5 @@ RUN echo "0 3 1-7 * 1 root python /backend/process_data/fetch_convert.py >> /var
 RUN python process_data/fetch_convert.py
 
 # CMD ["python", "app.py"]
-CMD ["gunicorn", "--workers=6", "--bind=0.0.0.0:5000", " --log-level=warning", "--name=backend", "app:configure_api()"]
+# CMD ["gunicorn", "--workers=6", "--bind=0.0.0.0:5000", "--name=backend", "'app:configure_api()'"]
+CMD gunicorn --workers=6 --bind=0.0.0.0:5000 --name=backend 'app:configure_api()'

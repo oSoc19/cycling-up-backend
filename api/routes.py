@@ -63,3 +63,19 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
+    @api.route("/api/data/bike_count/<int:id>")
+    @swag_from("swagger/bike_count_data.yml")
+    def getBikeCountData(id: int):
+        """
+        Retrieve the bike count data, for the counting location corresponding to the given id.
+
+        Arguments:
+            id {int} -- The requested counting location 
+        """
+
+        data = getters.getBikeCountData(id)
+        if data is not None:
+            return jsonify(data)
+        else:
+            return abort(404)
+

@@ -74,3 +74,8 @@ def getJsonContents(kind: str):
             data = json.load(f)
 
     return data
+
+
+def getBikeCountData(id):
+    # TODO
+    return {}

@@ -81,6 +81,8 @@ def getBikeCount():
     Returns live bike count data from data-mobility.brussels API.
     """
     link = "http://data-mobility.brussels/geoserver/bm_bike/wfs?service=wfs&version=1.1.0&request=GetFeature&srsName=EPSG:4326&outputFormat=json&typeName=bm_bike:rt_counting"
+    return getJsonDataFrom(link)
+
+def getJsonDataFrom(link):
     data = requests.get(link).text
     return json.loads(data)
-

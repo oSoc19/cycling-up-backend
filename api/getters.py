@@ -57,6 +57,18 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
     return collection
 
 
+def getHistoricalYears() -> [int]:
+    """
+    Retrieve all constructions years in ascending orderd
+
+    Returns:
+        [int] -- The list of construction year
+    """
+    with open("match_dates/construction_years.json", "r") as f:
+        years = json.load(f)
+
+    return years
+
 def getJsonContents(kind: str):
     """
     Returns json data read from file at the given path.

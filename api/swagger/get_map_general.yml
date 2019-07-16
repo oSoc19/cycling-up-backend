@@ -12,7 +12,7 @@ parameters:
       - bike_pump
       - bike_shop
       - bike_villo
-      - bike_gfr
+      - bike_icr
 responses:
   200:
     description: Successful GeoJSon data about the requested map

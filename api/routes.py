@@ -35,6 +35,16 @@ def configure_routes(api: Flask, config: dict) -> None:
         """
         return jsonify(message="Yello World !")
 
+
+    @api.route("/api/map/historical/years")
+    @swag_from("swagger/get_map_historical years.yml")
+    def getMapHistoricalYears():
+        """
+        Get the available historical year
+        """
+        return jsonify(getters.getHistoricalYears())
+
+
     @api.route("/api/map/historical/<int:year>")
     @swag_from("swagger/get_map_historical.yml")
     def getMapHistorical(year: int):

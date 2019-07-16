@@ -25,7 +25,7 @@ PLACES = {  "Porte d'Anvers": [4.352713, 	50.856442],
 features = []
 for place in PLACES.keys():
     point = Point(PLACES[place])
-    properties = {'name': place, 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
+    properties = {'name': place, 'id': list(PLACES.keys()).index(place), 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
 
     features.append(Feature(geometry=point, properties=properties))
 

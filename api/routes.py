@@ -1,15 +1,31 @@
-#!/usr/bin/env python3
+"""
 
-from flask import Flask
-from flask import request, make_response, jsonify, abort
-from flask_compress import Compress
-from flask_cors import CORS
-from flasgger import Swagger, swag_from
 
+"""
+
+## Dependency
+
+# Standard
+
+# Third party
+from flask import Flask, request, make_response, jsonify, abort
+from flasgger import swag_from
+
+# Local
 import api.getters as getters
 
 
-def configure_api_routes(api: Flask, config) -> None:
+def configure_routes(api: Flask, config: dict) -> None:
+    """[summary]
+
+    Arguments:
+        api {Flask} -- [description]
+        config {Config} -- [description]
+
+    Returns:
+        None -- [description]
+    """
+
     @api.route("/")
     @api.route("/api/ping")
     @swag_from("swagger/get_ping.yml")
@@ -21,18 +37,24 @@ def configure_api_routes(api: Flask, config) -> None:
 
     @api.route("/api/map/historical/<int:year>")
     @swag_from("swagger/get_map_historical.yml")
-    def getMapHistorical(year):
+    def getMapHistorical(year: int):
         """
         Get the historical map
+
+        Arguments:
+            year {int} -- The required year
         """
 
         return jsonify(getters.getMatchedFeaturesHistorical(year))
 
     @api.route("/api/map/general/<string:kind>")
     @swag_from("swagger/get_map_general.yml")
-    def getGeneralMap(kind):
+    def getGeneralMap(kind: str):
         """
         Retrieve the general map
+
+        Arguments:
+            kind {string} -- The required kind of map
         """
 
         data = getters.getJsonContents(kind)
@@ -43,9 +65,12 @@ def configure_api_routes(api: Flask, config) -> None:
 
     @api.route("/api/map/live_bike/<string:kind>")
     @swag_from("swagger/get_map_bike_count.yml")
-    def getLiveBikeCount(kind):
+    def getLiveBikeCount(kind: str):
         """
         Retrieve live bike count data or GFR map.
+
+        Arguments:
+            kind {string} -- The required kind of map
         """
         if kind == "count":
             data = getters.getBikeCount()

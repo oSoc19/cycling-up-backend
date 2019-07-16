@@ -1,18 +1,23 @@
-#!/usr/bin/env python3
+"""
+
+
+"""
+
+## Dependency
+
+# Standard
+
+# Third party
+from flask import request, make_response, jsonify
+
+# Local
+from process_data.fetch_convert import DATA_DIR
+
 
 from flask import Flask
-from flask import request, make_response, jsonify
-from flask_compress import Compress
-from flask_cors import CORS
-from flasgger import Swagger, swag_from
 
 
-import api.getters as getters
-
-
-api = Flask(__name__)
-
-def configure_error_handlers(api:Flask, config) -> None:
+def configure_error_handlers(api: Flask, config) -> None:
 
     # 404 - NOT FOUND
     @api.errorhandler(404)
@@ -23,12 +28,10 @@ def configure_error_handlers(api:Flask, config) -> None:
 
         return resp
 
-
     # 405 - METHOD_NOT_ALLOWED
     @api.errorhandler(405)
     def _method_not_allowed(msg="This method is not supported for this request !"):
         return jsonify({"status": 405, "message": msg}), 405
-
 
     # 500 - INTERNAL_SERVER_ERROR
     @api.errorhandler(500)
@@ -36,7 +39,6 @@ def configure_error_handlers(api:Flask, config) -> None:
         msg="Something, somewhere, has gone sideways.\nSo basically, shit happens..."
     ):
         return jsonify({"status": 500, "message": str(msg)}), 500
-
 
     # The default_error_handler  will not return any response
     # if the Flask application  is running in DEBUG mode.

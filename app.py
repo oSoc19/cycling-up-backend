@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
 from flask import Flask
-from flask import request, make_response, jsonify
 from flask_compress import Compress
 from flask_cors import CORS
-from flasgger import Swagger, swag_from
+from flasgger import Swagger
 
 import logging
 
 from config import get_config_by_env_mode, ProductionConfig
-from api.routes import configure_api_routes
-from api.error_handlers import configure_error_handlers
+from api import configure_routes, configure_error_handlers
 
 
 def configure_api(config=ProductionConfig):
@@ -24,7 +22,7 @@ def configure_api(config=ProductionConfig):
 
     _configure_api_doc(api, config)
 
-    configure_api_routes(api, config)
+    configure_routes(api, config)
 
     configure_error_handlers(api, config)
 

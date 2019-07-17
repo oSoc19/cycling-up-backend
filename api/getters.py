@@ -59,7 +59,7 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
 
 def getJsonContents(kind: str):
     """
-    Returns json data read from file at the given path.
+    Returns json data read from file that matches the given name.
 
     Arguments:
         kind {string} -- The required kind of map which be interpreted as filename
@@ -74,3 +74,33 @@ def getJsonContents(kind: str):
             data = json.load(f)
 
     return data
+
+
+def getBikeCountData(id):
+    """
+    Return a geojson feature containing historic count data as a property,
+    where its property 'id' matches the given id.
+    Return none when no such feature is found.
+    Arguments:
+        id {int} -- ID number of the requested geojson feature
+
+    Returns:
+        geojson feature {dict} -- the requested feature
+        None {} -- No matching feature was found 
+    """
+    # load historic count data
+    with open('process_data/historic_data/historic_bike_counts.json', 'r') as source:
+        data = json.load(source)
+
+    # list all valid IDs
+    ids = []
+    for feature in data['features']:
+        ids.append(feature['properties']['id'])
+    
+    # look for match
+    if id in ids:
+        requestedFeature = data['features'][ids.index(id)]
+    else:
+        requestedFeature = None
+
+    return requestedFeature

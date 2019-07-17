@@ -1,3 +1,8 @@
+# Used for adding construction years to Mobigis infrastructure data
+#  NOTE: requires a lot of human input
+#  NOTE: NOT necessary for API to function properly
+
+
 import json
 import webbrowser
 import urllib.parse

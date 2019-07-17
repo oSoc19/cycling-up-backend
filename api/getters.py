@@ -91,7 +91,7 @@ def getHistoricJsonContents(name: str):
     if not (name + ".json" in AVAILABLE_FILES):
         return None
     else:
-        with open("process_data/historic_data" + name + ".json", "r") as f:
+        with open("process_data/historic_data/" + name + ".json", "r") as f:
             data = json.load(f)
 
     return data

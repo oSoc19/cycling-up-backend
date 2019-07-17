@@ -81,7 +81,7 @@ def configure_routes(api: Flask, config: dict) -> None:
 
 
     @api.route("/api/data/villo/<string:kind>")
-    # TODO: @swag_from("swagger/get_bike_count_data.yml")
+    @swag_from("swagger/get_villo_data.yml")
     def getVilloData(kind):
         """
         Retrieve the required villo data, with kind the name of the json file.

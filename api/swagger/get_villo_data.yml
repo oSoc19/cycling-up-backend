@@ -1,0 +1,24 @@
+Retrieve (non geographical) data about villo.
+---
+parameters:
+  - name: kind
+    in: path
+    description: The required kind data
+    required: true
+    type: string
+    enum:
+      - historic_villo_rentals
+
+  
+responses:
+  200:
+    description: succesful json data
+    schema:
+      $ref: "#/definitions/VilloDataList"
+    examples:
+      application/json:
+        - year: 2017
+          numberOfRentals:  10000
+        - year: 2016
+          numberOfRentals: 15000
+      

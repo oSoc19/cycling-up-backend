@@ -1,8 +1,7 @@
+import json
+
 #  Used for generating construction_year_by_gid.json
 #    NOT required for API to function properly
-
-
-import json
 
 result = {}
 

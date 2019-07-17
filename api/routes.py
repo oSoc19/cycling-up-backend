@@ -72,7 +72,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
-    @api.route("/data/bike_count/<int:id>")
+    @api.route("/bike_count/<int:id>")
     @swag_from("swagger/get_bike_count_data.yml")
     def getBikeCountData(id: int):
         """
@@ -89,7 +89,7 @@ def configure_routes(api: Flask, config: dict) -> None:
             return abort(404)
 
     # Historic data
-    @api.route("/data/historical/<string:kind>")
+    @api.route("/historical/<string:kind>")
     @swag_from("swagger/get_historical_data.yml")
     def getHistoricalData(kind: str):
         """

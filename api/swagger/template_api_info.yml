@@ -106,5 +106,17 @@ definitions:
         - MultiPoint
         - MultiLineString
         - MultiPolygon
-        description: the geometry type
+        description: the geometry type``
+
+  VilloRentalList:
+      type: array
+      items:
+        type: object
+        properties:
+          year:
+            type: integer
+            description: Year of measurement
+          numberOfRentals:
+            type: integer
+            description: Total number of villo rentals
 

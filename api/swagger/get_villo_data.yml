@@ -3,7 +3,7 @@ Retrieve (non geographical) data about villo.
 parameters:
   - name: kind
     in: path
-    description: The required kind data
+    description: The required kind of data
     required: true
     type: string
     enum:

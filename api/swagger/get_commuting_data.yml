@@ -1,0 +1,24 @@
+Retrieve (non geographical) data about commuting to work by bike.
+---
+parameters:
+  - name: kind
+    in: path
+    description: The required kind of data
+    required: true
+    type: string
+    enum:
+      - commuting
+
+  
+responses:
+  200:
+    description: succesful json data
+    schema:
+      $ref: "#/definitions/CommutingDataList"
+    examples:
+      application/json:
+        - year: 2017
+          percentage: 3.5
+        - year: 2016
+          percentage: 3.2
+      

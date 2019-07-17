@@ -86,7 +86,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         """
         Retrieve the total number of villo rentals per year, as a json.
         """
-        data = getters.getJsonContents('')
+        data = getters.getHistoricJsonContents('historic_bike_counts')
         if data is not None:
             return jsonify(data)
         else:

@@ -17,7 +17,9 @@ import requests
 from process_data.fetch_convert import DATA_DIR
 
 
-AVAILABLE_FILES = os.listdir(DATA_DIR)
+AVAILABLE_FILES = os.listdir(DATA_DIR) + os.listdir('process_data/historic_data')
+
+
 
 
 def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
@@ -57,7 +59,7 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
     return collection
 
 
-def getJsonContents(kind: str):
+def getJsonContents(dir,kind: str):
     """
     Returns json data read from file that matches the given name.
 
@@ -71,6 +73,25 @@ def getJsonContents(kind: str):
         return None
     else:
         with open("process_data/data/" + kind + ".json", "r") as f:
+            data = json.load(f)
+
+    return data
+
+def getHistoricJsonContents(name: str):
+    """
+    Returns json data read from file that matches the given name.
+        The data/historic_data directory is searched for a match.
+
+    Arguments:
+        kind {string} -- The name of the required .json file (without .json extension)
+
+    Returns:
+        None -- The kind requested does not exists as geojson file
+    """
+    if not (name + ".json" in AVAILABLE_FILES):
+        return None
+    else:
+        with open("process_data/historic_data" + name + ".json", "r") as f:
             data = json.load(f)
 
     return data

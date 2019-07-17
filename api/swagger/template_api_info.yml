@@ -120,3 +120,15 @@ definitions:
             type: integer
             description: Total number of villo rentals
 
+  CommutingDataList:
+      type: array
+      items:
+        type: object
+        properties:
+          year:
+            type: integer
+            description: year of measurement
+          percentage:
+            type: float
+            description: percentage of commuters commuting to work by bike
+

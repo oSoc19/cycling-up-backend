@@ -90,7 +90,7 @@ def getJsonContents(kind: str):
 
     return data
 
-def getHistoricJsonContents(name: str):
+def getHistoricalJsonContents(name: str):
     """
     Returns json data read from file that matches the given name.
         The data/historic_data directory is searched for a match.

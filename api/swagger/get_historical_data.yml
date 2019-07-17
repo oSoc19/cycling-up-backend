@@ -1,4 +1,4 @@
-Retrieve (non geographical) data about commuting to work by bike.
+Retrieve (non geographical) historical data
 ---
 parameters:
   - name: kind
@@ -7,6 +7,7 @@ parameters:
     required: true
     type: string
     enum:
+      - historic_villo_rentals
       - commuting
 
   
@@ -14,11 +15,11 @@ responses:
   200:
     description: succesful json data
     schema:
-      $ref: "#/definitions/CommutingDataList"
+      $ref: "#/definitions/HistoricDataList"
     examples:
       application/json:
         - year: 2017
-          percentage: 3.5
+          numberOfRentals:  10000
         - year: 2016
-          percentage: 3.2
+          numberOfRentals: 15000
       

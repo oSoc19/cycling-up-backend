@@ -72,7 +72,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
-    @api.route("/data/bike_count/<int:id>")
+    @api.route("/bike_count/<int:id>")
     @swag_from("swagger/get_bike_count_data.yml")
     def getBikeCountData(id: int):
         """
@@ -88,26 +88,15 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
-
-    @api.route("/data/villo/<string:kind>")
-    @swag_from("swagger/get_villo_data.yml")
-    def getVilloData(kind):
+    # Historic data
+    @api.route("/historical/<string:kind>")
+    @swag_from("swagger/get_historical_data.yml")
+    def getHistoricalData(kind: str):
         """
         Retrieve the required villo data, with kind the name of the json file.
         """
-        data = getters.getHistoricJsonContents(kind)
-        if data is not None:
-            return jsonify(data)
-        else:
-            return abort(404)
-
-    @api.route("/api/data/commuting/<string:kind>")
-    @swag_from("swagger/get_commuting_data.yml")
-    def getCommutingData(kind):
-        """
-        Retrieve the required commuting data, with kind the name of the json file.
-        """
-        data = getters.getHistoricJsonContents(kind)
+        data = getters.getHistoricalJsonContents(kind)
+       
         if data is not None:
             return jsonify(data)
         else:

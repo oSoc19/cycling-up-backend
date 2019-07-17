@@ -108,7 +108,7 @@ definitions:
         - MultiPolygon
         description: the geometry type``
 
-  VilloRentalList:
+  HistoricDataList:
       type: array
       items:
         type: object
@@ -116,19 +116,7 @@ definitions:
           year:
             type: integer
             description: Year of measurement
-          numberOfRentals:
-            type: integer
-            description: Total number of villo rentals
-
-  CommutingDataList:
-      type: array
-      items:
-        type: object
-        properties:
-          year:
-            type: integer
-            description: year of measurement
-          percentage:
-            type: float
-            description: percentage of commuters commuting to work by bike
+          data:
+            type: integer, float
+            description: The measured data
 

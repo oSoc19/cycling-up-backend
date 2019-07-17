@@ -79,3 +79,16 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
+
+    @api.route("/api/data/villo/rentals")
+    # TODO: @swag_from("swagger/get_bike_count_data.yml")
+    def getVilloRentalData():
+        """
+        Retrieve the total number of villo rentals per year, as a json.
+        """
+        data = getters.getJsonContents('')
+        if data is not None:
+            return jsonify(data)
+        else:
+            return abort(404)
+

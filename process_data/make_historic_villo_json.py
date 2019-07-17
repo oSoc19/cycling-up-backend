@@ -14,5 +14,5 @@ with open('process_data/historic_data/yearly_villo_rentals.csv', 'r') as source:
                         'number_of_rentals': int(row[1])})
 
 # write data
-with open('process_data/historic_data/villo_rentals.json', 'w') as dest:
+with open('process_data/historic_data/historic_villo_rentals.json', 'w') as dest:
     json.dump(data, dest)

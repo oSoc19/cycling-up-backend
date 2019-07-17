@@ -59,7 +59,7 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
     return collection
 
 
-def getJsonContents(dir,kind: str):
+def getJsonContents(kind: str):
     """
     Returns json data read from file that matches the given name.
 

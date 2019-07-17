@@ -64,8 +64,9 @@ def getHistoricalYears() -> [int]:
     Returns:
         [int] -- The list of construction year
     """
-    with open("match_dates/construction_years.json") as f:
-        years = json.load(f)
+    with open("match_dates/construction_year_by_gid.json") as f:
+        data = json.load(f)
+        years = sorted(set(data.values()))
 
     return years
 

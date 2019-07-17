@@ -14,7 +14,7 @@ responses:
   200:
     description: succesful json data
     schema:
-      $ref: "#/definitions/VilloDataList"
+      $ref: "#/definitions/VilloRentalList"
     examples:
       application/json:
         - year: 2017

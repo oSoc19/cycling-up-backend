@@ -26,7 +26,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         None -- [description]
     """
 
-    @api.route("/api/ping")
+    @api.route("/ping")
     @swag_from("swagger/get_ping.yml")
     def api_ping():
         """
@@ -35,7 +35,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         return jsonify(message="Yello World !")
 
 
-    @api.route("/api/map/historical/years")
+    @api.route("/map/historical/years")
     @swag_from("swagger/get_map_historical years.yml")
     def getMapHistoricalYears():
         """
@@ -44,7 +44,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         return jsonify(getters.getHistoricalYears())
 
 
-    @api.route("/api/map/historical/<int:year>")
+    @api.route("/map/historical/<int:year>")
     @swag_from("swagger/get_map_historical.yml")
     def getMapHistorical(year: int):
         """
@@ -56,7 +56,7 @@ def configure_routes(api: Flask, config: dict) -> None:
 
         return jsonify(getters.getMatchedFeaturesHistorical(year))
 
-    @api.route("/api/map/general/<string:kind>")
+    @api.route("/map/general/<string:kind>")
     @swag_from("swagger/get_map_general.yml")
     def getGeneralMap(kind: str):
         """
@@ -72,14 +72,14 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
-    @api.route("/api/data/bike_count/<int:id>")
+    @api.route("/data/bike_count/<int:id>")
     @swag_from("swagger/get_bike_count_data.yml")
     def getBikeCountData(id: int):
         """
         Retrieve the bike count data, for the counting location corresponding to the given id.
 
         Arguments:
-            id {int} -- The requested counting location 
+            id {int} -- The requested counting location
         """
 
         data = getters.getBikeCountData(id)
@@ -89,7 +89,7 @@ def configure_routes(api: Flask, config: dict) -> None:
             return abort(404)
 
 
-    @api.route("/api/data/villo/<string:kind>")
+    @api.route("/data/villo/<string:kind>")
     @swag_from("swagger/get_villo_data.yml")
     def getVilloData(kind):
         """

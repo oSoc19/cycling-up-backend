@@ -60,8 +60,8 @@ def _configure_api_doc(api, config):
         "headers": [],
         "specs": [
             {
-                "endpoint": "/api/spec",
-                "route": "/api/spec",
+                "endpoint": "/spec",
+                "route": "/spec",
                 "rule_filter": lambda rule: True,  # all in
                 "model_filter": lambda tag: True,  # all in
             }

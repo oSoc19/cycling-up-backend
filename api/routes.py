@@ -89,13 +89,13 @@ def configure_routes(api: Flask, config: dict) -> None:
             return abort(404)
 
     # Historic data
-    @api.route("/api/data/historic/<string:kind>")
-    @swag_from("swagger/get_historic_data.yml")
-    def getHistoricData(kind: str):
+    @api.route("/api/data/historical/<string:kind>")
+    @swag_from("swagger/get_historical_data.yml")
+    def getHistoricalData(kind: str):
         """
         Retrieve the required villo data, with kind the name of the json file.
         """
-        data = getters.getHistoricJsonContents(kind)
+        data = getters.getHistoricalJsonContents(kind)
        
         if data is not None:
             return jsonify(data)

@@ -4,14 +4,18 @@ from geojson import FeatureCollection
 # Generates file containing geojson feature for which construction years are know
 # (match_dates/matched_features.json) and adds construction year as a property to this file.
 
+#########################
+# THIS FILE IS NOT USED #
+#########################
+
 result = {}
 
-# load all bike infrasteucture geosjon features
-with open('match_dates/bike_infra.geojson', 'r') as f:
+# load all bike infrastructure geosjon features
+with open('process_data/data/bike_infra.json', 'r') as f:
     data = json.loads(f.read())
 
 # load construction year data
-with open('match_dates/construction_year_by_gid.json', 'r') as f:
+with open('match_dates/data/construction_year_by_gid.json', 'r') as f:
     constructionYears = json.loads(f.read())
 
 # match construction years
@@ -24,6 +28,6 @@ for feature in data['features']:
 
 
 result = FeatureCollection(matched_features)
-with open('match_dates/matched_features.geojson', 'w') as f:
+with open('match_dates/data/matched_features.geojson', 'w') as f:
     f.write(json.dumps(result))
 

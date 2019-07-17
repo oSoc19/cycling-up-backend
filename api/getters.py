@@ -35,7 +35,7 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
         sourceData = json.loads(sourceFile.read())
 
     # load construction year data
-    with open("match_dates/construction_year.json", "r") as sourceFile:
+    with open("match_dates/construction_year_by_gid.json", "r") as sourceFile:
         constructionYears = json.loads(sourceFile.read())
 
     # generate list of correct gids
@@ -56,6 +56,19 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
     # return geojson as dict
     return collection
 
+
+def getHistoricalYears() -> [int]:
+    """
+    Retrieve all constructions years in ascending orderd
+
+    Returns:
+        [int] -- The list of construction year
+    """
+    with open("match_dates/construction_year_by_gid.json") as f:
+        data = json.load(f)
+        years = set(data.values())
+
+    return list(years)
 
 def getJsonContents(kind: str):
     """

@@ -26,7 +26,6 @@ def configure_routes(api: Flask, config: dict) -> None:
         None -- [description]
     """
 
-    @api.route("/")
     @api.route("/api/ping")
     @swag_from("swagger/get_ping.yml")
     def api_ping():
@@ -34,6 +33,16 @@ def configure_routes(api: Flask, config: dict) -> None:
         Route to check the connectivity
         """
         return jsonify(message="Yello World !")
+
+
+    @api.route("/api/map/historical/years")
+    @swag_from("swagger/get_map_historical years.yml")
+    def getMapHistoricalYears():
+        """
+        Get the available historical year
+        """
+        return jsonify(getters.getHistoricalYears())
+
 
     @api.route("/api/map/historical/<int:year>")
     @swag_from("swagger/get_map_historical.yml")

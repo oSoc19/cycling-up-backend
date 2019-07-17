@@ -1,0 +1,22 @@
+Retrieve the available historical map years
+---
+responses:
+  200:
+    description: Sorted list of years
+    schema:
+      type: array
+      items:
+        type: integer
+    examples:
+      application/json:
+        [
+          1899,
+          1940,
+          1980,
+          1981,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ]

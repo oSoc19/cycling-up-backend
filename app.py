@@ -69,7 +69,7 @@ def _configure_api_doc(api, config):
         "static_url_path": "/flasgger_static",
         # "static_folder": "static",  # must be set by user
         "swagger_ui": True,
-        "specs_route": "/api/doc",
+        "specs_route": "/",
     }
 
     swag_spec = Swagger(

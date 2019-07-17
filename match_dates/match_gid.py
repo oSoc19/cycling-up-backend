@@ -9,6 +9,6 @@ for feature in data['features']:
     result[feature['properties']['gid']] = int(feature['properties']['construction year'])
 
 
-with open('match_dates/construction_year.json', 'w') as f:
+with open('match_dates/construction_year_by_gid.json', 'w') as f:
     f.write(json.dumps(result))
 

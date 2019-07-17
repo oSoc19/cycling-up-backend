@@ -101,3 +101,15 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
+    @api.route("/api/data/commuting/<string:kind>")
+    # TODO: @swag_from("swagger/get_commuting_data.yml")
+    def getCommutingData(kind):
+        """
+        Retrieve the required commuting data, with kind the name of the json file.
+        """
+        data = getters.getHistoricJsonContents(kind)
+        if data is not None:
+            return jsonify(data)
+        else:
+            return abort(404)
+

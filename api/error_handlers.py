@@ -8,13 +8,12 @@
 # Standard
 
 # Third party
+from flask import Flask
 from flask import request, make_response, jsonify
 
 # Local
-from process_data.fetch_convert import DATA_DIR
 
 
-from flask import Flask
 
 
 def configure_error_handlers(api: Flask, config) -> None:

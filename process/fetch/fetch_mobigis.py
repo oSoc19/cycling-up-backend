@@ -16,7 +16,6 @@ import requests
 ## Variables
 
 BASE_DIR = Path(__file__).parent
-DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "mobigis_fetch.json")
 

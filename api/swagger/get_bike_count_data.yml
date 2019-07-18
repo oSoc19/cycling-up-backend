@@ -3,7 +3,19 @@ Retrieve a geojson point that contians historic bike count data as a property.
 parameters:
   - name: id
     in: path
-    description: ID of the queried bicycle count location
+    description: "ID of the queried bicycle count location \n \n
+                  Available locations are: \n
+                  - 0  -  Porte d'Anvers \n
+                  - 1  -  Carrefour Loi/Colonie/Royale \n
+                  - 2  -  Place Stéphanie; \n
+                  - 3  -  Mérode \n
+                  - 4  -  Ch. de Wavre/Maelbeek \n
+                  - 5  -  Germoir/Couronne \n
+                  - 6  -  Rue Washington/Ch. de Waterloo \n
+                  - 7  -  Carrefour Reyers/Cerisiers/Roodebeek \n
+                  - 8  -  CarrefourWoluwe/Hymans/Vandervelde \n
+                  - 9  -  Souverain/Hermann Debroux \n
+                  - 10 - Rond-point de l'Université (edited)"
     required: true
     type: integer
     enum:

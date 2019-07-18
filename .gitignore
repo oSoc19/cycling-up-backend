@@ -11,8 +11,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
-data/
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

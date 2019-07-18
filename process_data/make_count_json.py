@@ -25,9 +25,10 @@ PLACES = {  "Porte d'Anvers": [4.352713, 	50.856442],
 features = []
 for place in PLACES.keys():
     point = Point(PLACES[place])
-    properties = {'name': place, 'id': list(PLACES.keys()).index(place), 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
+    index = list(PLACES.keys()).index(place)
+    properties = {'name': place, 'id': , 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
 
-    features.append(Feature(geometry=point, properties=properties))
+    features.append(Feature(geometry=point, properties=properties, id=index))
 
 # load csv data
 with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig') as source:

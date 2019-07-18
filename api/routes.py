@@ -79,7 +79,12 @@ def configure_routes(api: Flask, config: dict) -> None:
         Retrieve the bike count stations.
         """
 
-        return jsonify(getters.getBikeCountStations())
+        data = getters.getHistoricalJsonContents('historic_bike_stations')
+
+        if data is not None:
+            return jsonify(data)
+        else:
+            return abort(404)
 
     @api.route("/bike_count/<int:id>")
     @swag_from("swagger/get_bike_count_data.yml")

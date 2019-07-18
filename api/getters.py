@@ -138,17 +138,3 @@ def getBikeCountData(id):
         requestedFeature = None
 
     return requestedFeature
-
-def getBikeCountStations():
-    """
-    Return a geojson feature containing historic count stations data.
-    Return none when no such feature is found.
-
-    Returns:
-        geojson feature {dict} -- the requested feature
-    """
-    # load historic count data
-    with open('process_data/historic_data/historic_bike_stations.json', 'r') as f:
-        data = json.load(f)
-
-    return data

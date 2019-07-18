@@ -1,0 +1,7 @@
+Retrieve a geojson point that contains historic bike count stations.
+---
+responses:
+  200:
+    description: Successful GeoJSon point, containing count stations.
+    schema:
+      $ref: "#/definitions/GeoJSon"

@@ -72,6 +72,15 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
+    @api.route("/bike_count/stations")
+    @swag_from("swagger/get_bike_count_stations.yml")
+    def getBikeCountStations(id: int):
+        """
+        Retrieve the bike count stations.
+        """
+
+        return jsonify(getters.getBikeCountStations())
+
     @api.route("/bike_count/<int:id>")
     @swag_from("swagger/get_bike_count_data.yml")
     def getBikeCountData(id: int):
@@ -96,9 +105,8 @@ def configure_routes(api: Flask, config: dict) -> None:
         Retrieve the required villo data, with kind the name of the json file.
         """
         data = getters.getHistoricalJsonContents(kind)
-       
+
         if data is not None:
             return jsonify(data)
         else:
             return abort(404)
-

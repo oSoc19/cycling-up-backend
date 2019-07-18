@@ -22,13 +22,20 @@ PLACES = {  "Porte d'Anvers": [4.352713, 50.856442],
 }
 
 # initialize all count locations as geojson features
+featuresPlaces = []
 features = []
 for place in PLACES.keys():
-    point = Point(PLACES[place])
     index = list(PLACES.keys()).index(place)
-    properties = {'name': place, 'id': , 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
+    point = Point(PLACES[place])
+
+    propertiesPlaces = {'name': place}
+
+    featuresPlaces.append(Feature(geometry=point, properties=propertiesPlaces, id=index))
+
+    properties = {'name': place, 'count_data': {'jan': {}, 'may':{}, 'sep': {}, 'nov': {}}}
 
     features.append(Feature(geometry=point, properties=properties, id=index))
+
 
 # load csv data
 with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig') as source:
@@ -46,8 +53,12 @@ with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig')
 
 
 # generate featurecollection
+resultPlaces = FeatureCollection(featuresPlaces)
 result = FeatureCollection(features)
 
 # write results
 with open('process_data/historic_data/historic_bike_counts.json', 'w') as dest:
     json.dump(result, dest)
+
+with open('process_data/historic_data/historic_bike_stations.json', 'w') as dest:
+    json.dump(resultPlaces, dest)

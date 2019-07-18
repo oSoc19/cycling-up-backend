@@ -38,7 +38,7 @@ for place in PLACES.keys():
 
 
 # load csv data
-with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig') as source:
+with open('data/historical/historic_count.csv', encoding='utf-8-sig') as source:
     reader = csv.reader(source, delimiter=";")
     headers = next(reader)
 

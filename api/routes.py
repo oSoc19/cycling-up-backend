@@ -74,7 +74,7 @@ def configure_routes(api: Flask, config: dict) -> None:
 
     @api.route("/bike_count/stations")
     @swag_from("swagger/get_bike_count_stations.yml")
-    def getBikeCountStations(id: int):
+    def getBikeCountStations():
         """
         Retrieve the bike count stations.
         """

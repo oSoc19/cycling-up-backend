@@ -4,7 +4,7 @@ import requests
 from geojson import Point, Feature, FeatureCollection
 
 # Define month names
-MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun', 
+MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun',
             7:'jul', 8:'aug', 9:'sep', 10:'oct', 11:'nov', 12:'dec'}
 
 # Match count place names to coordinates (done manually)
@@ -18,7 +18,7 @@ PLACES = {  "Porte d'Anvers": [4.352713, 	50.856442],
             "Carrefour Reyers/Cerisiers/Roodebeek": [4.402511, 50.848978],
             "Carrefour Woluwe/Hymans/Vandervelde": [4.439827, 50.847606],
             "Souverain/Hermann Debroux": [4.427464, 50.812292],
-            "Rond-point de l'Université": [4.384273, 50.813779]  
+            "Rond-point de l'Université": [4.384273, 50.813779]
 }
 
 # initialize all count locations as geojson features
@@ -33,7 +33,7 @@ for place in PLACES.keys():
 with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig') as source:
     reader = csv.reader(source, delimiter=";")
     headers = next(reader)
-    
+
     # extract info from row and place appropriately in geojson file.
     for row in reader:
         year = row[1]
@@ -41,7 +41,7 @@ with open('process_data/historic_data/historic_count.csv', encoding='utf-8-sig')
         index = 0
         for count in row[2:]:
             features[index]['properties']['count_data'][month][year] = int(count)
-            index += 1 
+            index += 1
 
 
 # generate featurecollection

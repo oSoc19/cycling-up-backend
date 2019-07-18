@@ -39,46 +39,31 @@ responses:
       $ref: "#/definitions/GeoJSon"
     examples:
       application/json:
-        type: FeatureCollection
-        features:
-        - type: Feature
-          geometry:
-            type: Point
-            coordinates:
-            - 102
-            - 0.5
-          properties:
-            prop0: value0
-        - type: Feature
-          geometry:
-            type: LineString
-            coordinates:
-            - - 102
-              - 0
-            - - 103
-              - 1
-            - - 104
-              - 0
-            - - 105
-              - 1
-          properties:
-            prop0: value0
-            prop1: 0
-        - type: Feature
-          geometry:
-            type: Polygon
-            coordinates:
-            - - - 100
-                - 0
-              - - 101
-                - 0
-              - - 101
-                - 1
-              - - 100
-                - 1
-              - - 100
-                - 0
-          properties:
-            prop0: value0
-            prop1:
-              this: that
+        type: Feature
+        geometry:
+          type: Point
+          coordinates:
+          - 4.352713
+          - 50.856442
+        properties:
+          name: "Porte d'Anvers"
+          id: 0
+          count_data:
+            jan:
+              1998: 0
+              1999: 0
+              2017: 188
+            may:
+              1998: 48
+              1999: 31
+              2017: 296
+            nov: 
+              1998: 0
+              1999: 0
+              2017: 251
+            dec: 
+              1998: 46
+              1999: 53
+              2017: 271
+
+      

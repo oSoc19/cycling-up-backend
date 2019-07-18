@@ -17,7 +17,7 @@ import requests
 from process_data.fetch_convert import DATA_DIR
 
 
-AVAILABLE_FILES = os.listdir(DATA_DIR) + os.listdir('process_data/historic_data')
+AVAILABLE_FILES = os.listdir(DATA_DIR) + os.listdir('data/historical')
 
 
 
@@ -37,7 +37,7 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
         sourceData = json.loads(sourceFile.read())
 
     # load construction year data
-    with open("match_dates/construction_year_by_gid.json", "r") as sourceFile:
+    with open("infrastructure_date_matching/data/construction_year_by_gid.json", "r") as sourceFile:
         constructionYears = json.loads(sourceFile.read())
 
     # generate list of correct gids
@@ -66,7 +66,7 @@ def getHistoricalYears() -> [int]:
     Returns:
         [int] -- The list of construction year
     """
-    with open("match_dates/construction_year_by_gid.json") as f:
+    with open("infrastructure_date_matching/data/construction_year_by_gid.json") as f:
         data = json.load(f)
         years = set(data.values())
 
@@ -104,7 +104,7 @@ def getHistoricalJsonContents(name: str):
     if not (name + ".json" in AVAILABLE_FILES):
         return None
     else:
-        with open("process_data/historic_data/" + name + ".json", "r") as f:
+        with open("data/historical/" + name + ".json", "r") as f:
             data = json.load(f)
 
     return data
@@ -120,7 +120,7 @@ def getBikeCountData(id):
 
     Returns:
         geojson feature {dict} -- the requested feature
-        None {} -- No matching feature was found 
+        None {} -- No matching feature was found
     """
     # load historic count data
     with open('process_data/historic_data/historic_bike_counts.json', 'r') as source:
@@ -130,7 +130,7 @@ def getBikeCountData(id):
     ids = []
     for feature in data['features']:
         ids.append(feature['properties']['id'])
-    
+
     # look for match
     if id in ids:
         requestedFeature = data['features'][ids.index(id)]

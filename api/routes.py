@@ -66,7 +66,7 @@ def configure_routes(api: Flask, config: dict) -> None:
             kind {string} -- The required kind of map
         """
 
-        data = getters.getJsonContents(kind)
+        data = getters.getFetchedMobigisJsonContents(kind)
         if data is not None:
             return jsonify(data)
         else:

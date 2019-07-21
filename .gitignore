@@ -11,6 +11,11 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+data/
+
+## Keep the construction_year_by_gid.json and the last_processed_gid.txt
+!data/construction_date_matching/construction_year_by_gid.json
+!data/construction_date_matching/last_processed_gid.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

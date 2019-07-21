@@ -1,7 +1,15 @@
 import csv
 import json
+import os
+
 import requests
 from geojson import Point, Feature, FeatureCollection
+
+from config import get_config_by_env_mode
+
+
+current_config = get_config_by_env_mode()
+
 
 # Define month names
 MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun',
@@ -57,8 +65,9 @@ resultPlaces = FeatureCollection(featuresPlaces)
 result = FeatureCollection(features)
 
 # write results
-with open('process_data/historic_data/historic_bike_counts.json', 'w') as dest:
+
+with open(os.path.join(current_config.HISTORICAL_DIR, 'historic_bike_counts.json'), 'w') as dest:
     json.dump(result, dest)
 
-with open('process_data/historic_data/historic_bike_stations.json', 'w') as dest:
+with open(os.path.join(current_config.HISTORICAL_DIR, 'historic_bike_stations.json'), 'w') as dest:
     json.dump(resultPlaces, dest)

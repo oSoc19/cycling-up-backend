@@ -12,13 +12,14 @@ import json
 import requests
 
 
+from config import get_config_by_env_mode
+
 
 ## Variables
 
-BASE_DIR = Path(__file__).parent.parent
-DATA_DIR = os.path.join(BASE_DIR, 'process_data')
-
+BASE_DIR = Path(__file__).parent
 MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "mobigis_fetch.json")
+current_config = get_config_by_env_mode()
 
 
 
@@ -43,7 +44,7 @@ def fetch(url, save_as):
 
     res = requests.get(url, stream=True)
     if res.status_code == 200:
-        file_name = os.path.join(DATA_DIR, save_as)
+        file_name = os.path.join(current_config.MOBIGIS_DIR, save_as)
         # total_size = int(res.headers['Content-Length'])
         read = 0
         print("Fetched : %s" % file_name)

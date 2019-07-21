@@ -1,6 +1,14 @@
 import csv
 import json
+import os
+
 import requests
+
+from config import get_config_by_env_mode
+
+
+current_config = get_config_by_env_mode()
+
 
 data = []
 
@@ -14,5 +22,6 @@ with open('process_data/historic_data/yearly_villo_rentals.csv', 'r') as source:
                         'number_of_rentals': int(row[1])})
 
 # write data
-with open('process_data/historic_data/historic_villo_rentals.json', 'w') as dest:
+
+with open(os.path.join(current_config.HISTORICAL_DIR,'historic_villo_rentals.json'), 'w') as dest:
     json.dump(data, dest)

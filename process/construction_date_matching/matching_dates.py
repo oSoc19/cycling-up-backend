@@ -1,14 +1,27 @@
+"""
+Used for adding construction years to Mobigis infrastructure data
+ NOTE: requires a lot of human/manual input
+ NOTE: NOT necessary for API in order to function properly
+
+"""
+
 import json
 import webbrowser
 import urllib.parse
 import os
 import time
-import requests
 import csv
 
-# Used for adding construction years to Mobigis infrastructure data
-#  NOTE: requires a lot of human input
-#  NOTE: NOT necessary for API in order to function properly
+import requests
+
+
+from config import get_config_by_env_mode
+
+current_config = get_config_by_env_mode()
+
+#
+#
+#
 
 
 def extract_coordinates(feature):
@@ -53,13 +66,13 @@ def look_for_match(street_name, projects):
 
 
 # load json data
-f = open('process_data/data/bike_infra.json')
-x =  f.read()
-infra_data = json.loads(x)
+f = open(os.path.join(current_config.MOBIGIS_DIR,'bike_infra.json'))
+infra_data = json.loads(f.read())
+f.close()
 
 
 # load construction data
-finished = open('match_dates/data/finished_projects.csv')
+finished = open(os.path.join(current_config.INFRA_DATES_DIR, 'finished_projects.csv'))
 with finished:
     finished = finished.read()
     finished = finished.split('\n')
@@ -71,7 +84,7 @@ for row in finished:
     finished_projects[row[0]] = row[1]
 
 
-WIP = open('match_dates/data/WIP_projects.csv')
+WIP = open(os.path.join(current_config.INFRA_DATES_DIR, 'WIP_projects.csv'))
 with WIP:
     WIP = WIP.read()
     WIP = WIP.split('\n')
@@ -84,16 +97,16 @@ for row in WIP:
 
 
 #load progress so far
-if os.path.isfile('match_dates/data/result_unmatched.json'):
-    result_unmatched = json.loads(open('match_dates/data/result_unmatched.json', 'r').read())
+if os.path.isfile(os.path.join(current_config.INFRA_DATES_DIR, 'result_unmatched.json')):
+    result_unmatched = json.loads(open(os.path.join(current_config.INFRA_DATES_DIR, 'result_unmatched.json'), 'r').read())
 else:
     result_unmatched = {
   "type": "FeatureCollection",
   "features": []
 }
 
-if os.path.isfile('match_dates/data/result_matched.json'):
-    result_matched = json.loads(open('match_dates/data/result_matched.json', 'r').read())
+if os.path.isfile(os.path.join(current_config.INFRA_DATES_DIR, 'result_matched.json')):
+    result_matched = json.loads(open(os.path.join(current_config.INFRA_DATES_DIR, 'result_matched.json'), 'r').read())
 else:
     result_matched = {
   "type": "FeatureCollection",
@@ -101,8 +114,8 @@ else:
 }
 
 # get last processed gid
-if os.path.isfile('match_dates/data/last_processed_gid.txt'):
-    last_gid = int(open('match_dates/data/last_processed_gid.txt', 'r').read())
+if os.path.isfile(os.path.join(current_config.INFRA_DATES_DIR, 'last_processed_gid.txt')):
+    last_gid = int(open(os.path.join(current_config.INFRA_DATES_DIR, 'last_processed_gid.txt'), 'r').read())
 else:
     last_gid = 2
 
@@ -173,8 +186,8 @@ for feature in infra_data['features'][last_gid-2:]:
         result_unmatched['features'].append(new_feature)
 
     # save progress
-    json.dump(result_unmatched, open('match_dates/data/result_unmatched.json', 'w'))
-    json.dump(result_matched, open('match_dates/data/result_matched.json', 'w'))
+    json.dump(result_unmatched, open(os.path.join(current_config.INFRA_DATES_DIR, 'result_unmatched.json'), 'w'))
+    json.dump(result_matched, open(os.path.join(current_config.INFRA_DATES_DIR, 'result_matched.json'), 'w'))
     open('match_dates/last_processed_gid.txt', 'w').write(str(new_feature['properties']['gid']))
 
     print('--------------------------------------------------------- \n')

@@ -8,12 +8,12 @@ import csv
 
 # Used for adding construction years to Mobigis infrastructure data
 #  NOTE: requires a lot of human input
-#  NOTE: NOT necessary for API to function properly
+#  NOTE: NOT necessary for API in order to function properly
 
 
 def extract_coordinates(feature):
     '''
-        Returns the coordinates as a tuple (lat, lon) containing 
+        Returns the coordinates as a tuple (lat, lon) containing
         the middle coordinate of the given LineString json feature.
     '''
     index = int(len(feature['geometry']['coordinates'][0])/2)
@@ -132,7 +132,7 @@ for feature in infra_data['features'][last_gid-2:]:
     WIP = False
     while street_name != 'next':
         # look for match in data
-        
+
         year = look_for_match(street_name, finished_projects)
         if year == 'null':
             year = look_for_match(street_name, WIP_projects)
@@ -161,7 +161,7 @@ for feature in infra_data['features'][last_gid-2:]:
                                 "finished": str(not(WIP)),
                                 "project name": street_name
                             },
-                            
+
                         }
             break
 

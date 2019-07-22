@@ -2,6 +2,7 @@ import csv
 import json
 import os
 import sys
+from pathlib import Path
 parent = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 print(parent)
 sys.path.insert(0, parent)
@@ -12,7 +13,7 @@ from config import get_config_by_env_mode
 
 
 current_config = get_config_by_env_mode()
-BASE_DIR = Path(__file__).parent
+
 
 # Define month names
 MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun',

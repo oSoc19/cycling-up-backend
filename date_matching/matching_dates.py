@@ -18,10 +18,6 @@ from config import get_config_by_env_mode
 
 current_config = get_config_by_env_mode()
 
-#
-#
-#
-
 
 def extract_coordinates(feature):
     '''

@@ -107,7 +107,7 @@ def configure_routes(api: Flask, config: dict) -> None:
     @swag_from("swagger/get_historical_data.yml")
     def getHistoricalData(kind: str):
         """
-        Retrieve the required villo data, with kind the name of the json file.
+        Retrieve the required historical data, kind is interpreted as the file name.
         """
         data = getters.getHistoricalJsonContents(kind)
 

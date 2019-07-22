@@ -5,6 +5,13 @@ from pathlib import Path
 
 from config import get_config_by_env_mode
 
+
+# Processes .csv files found in the /process/base_data/csv_by_year directory.
+#   All base csv's must contain one header line with 2 headers,
+#   followed by datapoints dated by year.
+#   Examples can be found in /process/base_data/csv_by_year
+#   Resulting .json files are added to the /data/historical folder.
+
 BASE_DIR = Path(__file__).parent.parent
 CSV_DIR = os.path.join(BASE_DIR, "base_data", "csv_by_year")
 current_config = get_config_by_env_mode()

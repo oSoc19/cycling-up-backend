@@ -17,6 +17,10 @@ data/
 !data/construction_date_matching/construction_year_by_gid.json
 !data/construction_date_matching/last_processed_gid.txt
 
+## Keep historic_count.csv and yearly_villo_rentals.csv
+!data/historical/historic_count.csv
+!data/historical/yearly_villo_rentals.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -141,9 +145,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# Data files
-*.csv
-*.geojson
 
 

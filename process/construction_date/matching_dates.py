@@ -9,7 +9,6 @@ import json
 import webbrowser
 import urllib.parse
 import os
-import time
 import csv
 
 import requests

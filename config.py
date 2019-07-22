@@ -41,7 +41,7 @@ class ProductionConfig(Config):
     DEBUG = False
 
 
-CONFIG_BY_NAME = dict(dev=DevelopmentConfig, prod=ProductionConfig)
+CONFIG_BY_NAME = dict(dev=DevelopmentConfig(), prod=ProductionConfig())
 
 def get_config_by_env_mode():
     is_mode_dev = Config.ENV != "production"

@@ -11,7 +11,7 @@ from config import get_config_by_env_mode, ProductionConfig
 from api import configure_routes, configure_error_handlers
 
 
-def configure_api(config=ProductionConfig):
+def configure_api(config=ProductionConfig()):
     api = Flask(__name__)
 
     # Compress each response which content-length > 600
@@ -19,6 +19,8 @@ def configure_api(config=ProductionConfig):
 
     # Enable CORS headers on each api routes
     CORS(api, allow_headers="Content-Type")
+
+    config.init_dirs()
 
     _configure_api_doc(api, config)
 
@@ -81,5 +83,5 @@ def _configure_api_doc(api, config):
 
 if __name__ == "__main__":
     Config = get_config_by_env_mode()
-    app = configure_api(Config)
+    app = configure_api(Config())
     app.run(debug=Config.DEBUG, host="0.0.0.0")

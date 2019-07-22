@@ -14,12 +14,34 @@ from geojson import FeatureCollection
 import requests
 
 # Local
-from process_data.fetch_convert import DATA_DIR
+from config import get_config_by_env_mode
 
 
-AVAILABLE_FILES = os.listdir(DATA_DIR) + os.listdir('data/historical')
+## Attributes
+
+current_config = get_config_by_env_mode()
+AVAILABLE_FILES = os.listdir(current_config.MOBIGIS_DIR)
+AVAILABLE_FILES += os.listdir(current_config.HISTORICAL_DIR)
 
 
+
+def get_json_contents(path: str, name:str):
+    """
+    Returns json data read from file that matches the given name.
+
+    Arguments:
+        kind {string} -- The required kind of map which be interpreted as filename
+
+    Returns:
+        None -- The kind requested does not exists as geojson file
+    """
+    json_file_path = os.path.join(path, name + ".json")
+    if not os.path.exists(json_file_path):
+        return None
+    with open(json_file_path) as f:
+        data = json.load(f)
+
+    return data
 
 
 def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
@@ -33,11 +55,13 @@ def getMatchedFeaturesHistorical(date: int = 2019) -> dict:
     """
 
     # load geodata
-    with open(DATA_DIR + "/bike_infra.json", "r") as sourceFile:
+    bike_infra_path = os.path.join(current_config.MOBIGIS_DIR, "bike_infra.json")
+    with open(bike_infra_path) as sourceFile:
         sourceData = json.loads(sourceFile.read())
 
     # load construction year data
-    with open("infrastructure_date_matching/data/construction_year_by_gid.json", "r") as sourceFile:
+    years_by_gid_path = os.path.join(current_config.INFRA_DATES_DIR, "construction_year_by_gid.json")
+    with open(years_by_gid_path) as sourceFile:
         constructionYears = json.loads(sourceFile.read())
 
     # generate list of correct gids
@@ -66,29 +90,13 @@ def getHistoricalYears() -> [int]:
     Returns:
         [int] -- The list of construction year
     """
-    with open("infrastructure_date_matching/data/construction_year_by_gid.json") as f:
+
+    years_by_gid_path = os.path.join(current_config.INFRA_DATES_DIR, "construction_year_by_gid.json")
+    with open(years_by_gid_path) as f:
         data = json.load(f)
         years = set(data.values())
 
     return list(years)
-
-def getJsonContents(kind: str):
-    """
-    Returns json data read from file that matches the given name.
-
-    Arguments:
-        kind {string} -- The required kind of map which be interpreted as filename
-
-    Returns:
-        None -- The kind requested does not exists as geojson file
-    """
-    if not (kind + ".json" in AVAILABLE_FILES):
-        return None
-    else:
-        with open("process_data/data/" + kind + ".json", "r") as f:
-            data = json.load(f)
-
-    return data
 
 def getHistoricalJsonContents(name: str):
     """
@@ -96,7 +104,7 @@ def getHistoricalJsonContents(name: str):
         The data/historic_data directory is searched for a match.
 
     Arguments:
-        kind {string} -- The name of the required .json file (without .json extension)
+        name {string} -- The name of the required .json file (without .json extension)
 
     Returns:
         None -- The kind requested does not exists as geojson file
@@ -104,10 +112,23 @@ def getHistoricalJsonContents(name: str):
     if not (name + ".json" in AVAILABLE_FILES):
         return None
     else:
-        with open("data/historical/" + name + ".json", "r") as f:
-            data = json.load(f)
+        return get_json_contents(current_config.HISTORICAL_DIR, name)
 
-    return data
+def getFetchedMobigisJsonContents(name: str):
+    """
+    Returns json data read from file that matches the given name.
+        The fetch mobigis directory is searched for a match.
+
+    Arguments:
+        name {string} -- The name of the required .json file (without .json extension)
+
+    Returns:
+        None -- The kind requested does not exists as geojson file
+    """
+    if not (name + ".json" in AVAILABLE_FILES):
+        return None
+    else:
+       return get_json_contents(current_config.MOBIGIS_DIR, name)
 
 
 def getBikeCountData(id):
@@ -123,7 +144,8 @@ def getBikeCountData(id):
         None {} -- No matching feature was found
     """
     # load historic count data
-    with open('process_data/historic_data/historic_bike_counts.json', 'r') as source:
+    json_path = os.path.join(current_config.HISTORICAL_DIR, "historic_bike_counts.json")
+    with open(json_path) as source:
         data = json.load(source)
 
     # list all valid IDs

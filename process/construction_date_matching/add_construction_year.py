@@ -1,5 +1,13 @@
 import json
+import os
+
 from geojson import FeatureCollection
+
+
+from config import get_config_by_env_mode
+
+current_config = get_config_by_env_mode()
+
 
 # Generates file containing geojson feature for which construction years are known
 # (match_dates/data/matched_features.json) and adds construction year as a property to this file.
@@ -8,11 +16,11 @@ from geojson import FeatureCollection
 result = {}
 
 # load all bike infrastructure geosjon features
-with open('process_data/data/bike_infra.json', 'r') as f:
+with open(os.path.join(current_config.MOBIGIS_DIR,'bike_infra.json')) as f:
     data = json.loads(f.read())
 
 # load construction year data
-with open('match_dates/data/construction_year_by_gid.json', 'r') as f:
+with open(os.path.join(current_config.INFRA_DATES_DIR,'construction_year_by_gid.json')) as f:
     constructionYears = json.loads(f.read())
 
 # match construction years
@@ -25,6 +33,6 @@ for feature in data['features']:
 
 
 result = FeatureCollection(matched_features)
-with open('match_dates/data/matched_features.geojson', 'w') as f:
+with open(os.path.join(current_config.INFRA_DATES_DIR, 'matched_features.geojson'), 'w') as f:
     f.write(json.dumps(result))
 

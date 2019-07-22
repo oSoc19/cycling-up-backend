@@ -15,9 +15,7 @@ fetch.fetch_them_all()
 
 # generate chart gjsons
 import process.charts.make_count_json
-import process.charts.make_historic_villo_json
-import process.charts.make_commute_json
-import process.charts.make_length_json
+import process.charts.csv_by_year_to_json
 
 # construction_year_by_gid
 import process.construction_date.match_gid

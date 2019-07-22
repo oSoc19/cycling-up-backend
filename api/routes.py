@@ -72,6 +72,7 @@ def configure_routes(api: Flask, config: dict) -> None:
         else:
             return abort(404)
 
+    @api.route("/map/bike_count/historic_stations")
     @swag_from("swagger/get_bike_count_stations.yml")
     def getBikeCountStations():
         """

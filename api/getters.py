@@ -141,7 +141,7 @@ def getBikeCountData(id):
     # list all valid IDs
     ids = []
     for feature in data['features']:
-        ids.append(feature['properties']['id'])
+        ids.append(feature['id'])
 
     # look for match
     if id in ids:

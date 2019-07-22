@@ -16,13 +16,7 @@ import requests
 # Local
 from config import get_config_by_env_mode
 
-
-## Attributes
-
 current_config = get_config_by_env_mode()
-AVAILABLE_FILES = os.listdir(current_config.MOBIGIS_DIR)
-AVAILABLE_FILES += os.listdir(current_config.HISTORICAL_DIR)
-
 
 
 def get_json_contents(path: str, name:str):
@@ -35,6 +29,8 @@ def get_json_contents(path: str, name:str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
+    AVAILABLE_FILES = os.listdir(current_config.MOBIGIS_DIR)
+    AVAILABLE_FILES += os.listdir(current_config.HISTORICAL_DIR)
     json_file_path = os.path.join(path, name + ".json")
     if not os.path.exists(json_file_path):
         return None

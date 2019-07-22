@@ -17,8 +17,12 @@ for csv_data in os.listdir(CSV_DIR):
         header = next(reader)
         # build json as a list of dicts
         for row in reader:
-            data.append({header[0]: int(row[0]),
-                            header[1]: float(row[1])})
+            year = int(row[0])
+            try:
+                value = int(row[1])
+            except ValueError:
+                value = float(row[1])
+            data.append({header[0]: year, header[1]: value})
 
     # write json data
     filename = csv_data.split('.')[0]

@@ -11,8 +11,11 @@ get_config_by_env_mode().init_dirs()
 
 # fetch mobigis map data
 import process.fetch_mobigis.fetch_mobigis as fetch
-fetch.fetch_them_all()
+#fetch.fetch_them_all()
 
 # generate chart gjsons
 import process.charts.make_count_json
 import process.charts.make_historic_villo_json
+
+import process.construction_date.match_gid
+

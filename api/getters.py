@@ -105,10 +105,7 @@ def getHistoricalJsonContents(name: str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
-    if not (name + ".json" in AVAILABLE_FILES):
-        return None
-    else:
-        return get_json_contents(current_config.HISTORICAL_DIR, name)
+    return get_json_contents(current_config.HISTORICAL_DIR, name)
 
 def getFetchedMobigisJsonContents(name: str):
     """
@@ -121,10 +118,7 @@ def getFetchedMobigisJsonContents(name: str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
-    if not (name + ".json" in AVAILABLE_FILES):
-        return None
-    else:
-       return get_json_contents(current_config.MOBIGIS_DIR, name)
+    return get_json_contents(current_config.MOBIGIS_DIR, name)
 
 
 def getBikeCountData(id):

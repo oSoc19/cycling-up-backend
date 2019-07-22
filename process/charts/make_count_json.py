@@ -1,11 +1,7 @@
 import csv
 import json
 import os
-import sys
 from pathlib import Path
-parent = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-print(parent)
-sys.path.insert(0, parent)
 import requests
 from geojson import Point, Feature, FeatureCollection
 

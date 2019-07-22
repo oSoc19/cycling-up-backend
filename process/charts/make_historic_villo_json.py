@@ -1,19 +1,20 @@
 import csv
 import json
 import os
-
+from pathlib import Path
 import requests
 
 from config import get_config_by_env_mode
 
-
+BASE_DIR = Path(__file__).parent.parent
 current_config = get_config_by_env_mode()
 
 
 data = []
 
 # load csv data
-with open('process_data/historic_data/yearly_villo_rentals.csv', 'r') as source:
+file_path = os.path.join(BASE_DIR, "base_data", "yearly_villo_rentals.csv")
+with open(file_path, 'r') as source:
     reader = csv.reader(source, delimiter=";")
     header = next(reader)
     # build json as a list of dicts

@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-
+from pathlib import Path
 import requests
 from geojson import Point, Feature, FeatureCollection
 
@@ -9,7 +9,7 @@ from config import get_config_by_env_mode
 
 
 current_config = get_config_by_env_mode()
-
+BASE_DIR = Path(__file__).parent.parent
 
 # Define month names
 MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun',
@@ -46,7 +46,8 @@ for place in PLACES.keys():
 
 
 # load csv data
-with open('data/historical/historic_count.csv', encoding='utf-8-sig') as source:
+path = os.path.join(BASE_DIR, "base_data", "historic_count.csv")
+with open(path, encoding='utf-8-sig') as source:
     reader = csv.reader(source, delimiter=";")
     headers = next(reader)
 

@@ -14,10 +14,10 @@ RUN pip install pipenv gunicorn
 RUN pipenv install --system --deploy
 
 # Set a cron to fetch job on each first Monday of month, at 3 a.m.
-RUN echo "0 3 1-7 * 1 root python /backend/process/fetch/fetch_mobigis.py >> /var/log/api_fetch.out 2>/var/log/api_fetch.err" \
+RUN echo "0 3 1-7 * 1 root python process/__init__.py  >> /var/log/api_process.out 2>/var/log/api_process.err" \
     >> /etc/crontab
 
-RUN python process/fetch/fetch_mobigis.py
+RUN python process/__init__.py
 
 # CMD ["python", "app.py"]
 # CMD ["gunicorn", "--workers=6", "--bind=0.0.0.0:5000", "--name=backend", "'app:configure_api()'"]

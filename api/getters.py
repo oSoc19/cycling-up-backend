@@ -16,13 +16,7 @@ import requests
 # Local
 from config import get_config_by_env_mode
 
-
-## Attributes
-
 current_config = get_config_by_env_mode()
-AVAILABLE_FILES = os.listdir(current_config.MOBIGIS_DIR)
-AVAILABLE_FILES += os.listdir(current_config.HISTORICAL_DIR)
-
 
 
 def get_json_contents(path: str, name:str):
@@ -35,6 +29,8 @@ def get_json_contents(path: str, name:str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
+    AVAILABLE_FILES = os.listdir(current_config.MOBIGIS_DIR)
+    AVAILABLE_FILES += os.listdir(current_config.HISTORICAL_DIR)
     json_file_path = os.path.join(path, name + ".json")
     if not os.path.exists(json_file_path):
         return None
@@ -109,10 +105,7 @@ def getHistoricalJsonContents(name: str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
-    if not (name + ".json" in AVAILABLE_FILES):
-        return None
-    else:
-        return get_json_contents(current_config.HISTORICAL_DIR, name)
+    return get_json_contents(current_config.HISTORICAL_DIR, name)
 
 def getFetchedMobigisJsonContents(name: str):
     """
@@ -125,10 +118,7 @@ def getFetchedMobigisJsonContents(name: str):
     Returns:
         None -- The kind requested does not exists as geojson file
     """
-    if not (name + ".json" in AVAILABLE_FILES):
-        return None
-    else:
-       return get_json_contents(current_config.MOBIGIS_DIR, name)
+    return get_json_contents(current_config.MOBIGIS_DIR, name)
 
 
 def getBikeCountData(id):
@@ -151,7 +141,7 @@ def getBikeCountData(id):
     # list all valid IDs
     ids = []
     for feature in data['features']:
-        ids.append(feature['properties']['id'])
+        ids.append(feature['id'])
 
     # look for match
     if id in ids:

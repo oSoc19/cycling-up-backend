@@ -3,10 +3,13 @@
 
 ## Dependencies
 
+
 # Built-in
 import os
 from pathlib import Path
 import json
+
+
 
 # External
 import requests
@@ -17,8 +20,8 @@ from config import get_config_by_env_mode
 
 ## Variables
 
-BASE_DIR = Path(__file__).parent
-MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "mobigis_fetch.json")
+BASE_DIR = Path(__file__).parent.parent
+MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "base_data", "mobigis_fetch.json")
 current_config = get_config_by_env_mode()
 
 
@@ -27,8 +30,6 @@ def fetch_them_all():
     """
     Fetch all items and download them
     """
-    # Create data folder if not exists
-    os.makedirs(DATA_DIR, exist_ok=True)
 
     with open(MOBIGIS_FETCH_JSON_PATH) as mobigis_fetch_json:
         mobigis_fetch = json.load(mobigis_fetch_json)

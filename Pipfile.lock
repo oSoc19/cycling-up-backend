@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a966f260fd2390d545f1745fc52c332c37591b938a7fe018b0129efb58043567"
+            "sha256": "c10b75bb44aa5bb327d0027702868db665732d41b9a4ccf9bf0b137c6101537d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -188,7 +188,7 @@
         "pyrsistent": {
             "hashes": [
                 "sha256:50cffebc87ca91b9d4be2dcc2e479272bcb466b5a0487b6c271f7ddea6917e14",
-                "sha256:6492aa4aae8eb42c9c892aa75c220d3066486ab45264a4ea5d71018b194f0750"
+                "sha256:e9c27ec499654ea4ac98354653ea0e64c2e2a2083aaaebbb8b4bbb959eb5fe0d"
             ],
             "version": "==0.15.3"
         },
@@ -240,10 +240,10 @@
         },
         "werkzeug": {
             "hashes": [
-                "sha256:865856ebb55c4dcd0630cdd8f3331a1847a819dda7e8c750d3db6f2aa6c0209c",
-                "sha256:a0b915f0815982fb2a09161cb8f31708052d0951c3ba433ccc5e1aa276507ca6"
+                "sha256:87ae4e5b5366da2347eb3116c0e6c681a0e939a33b2805e2c0cbd282664932c4",
+                "sha256:a13b74dd3c45f758d4ebdb224be8f1ab8ef58b3c0ffc1783a8c7d9f4f50227e6"
             ],
-            "version": "==0.15.4"
+            "version": "==0.15.5"
         }
     },
     "develop": {
@@ -290,6 +290,14 @@
                 "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
             ],
             "version": "==0.6.1"
+        },
+        "pep8": {
+            "hashes": [
+                "sha256:b22cfae5db09833bb9bd7c8463b53e1a9c9b39f12e304a8d0bba729c501827ee",
+                "sha256:fe249b52e20498e59e0b5c5256aa52ee99fc295b26ec9eaa85776ffdb9fe6374"
+            ],
+            "index": "pypi",
+            "version": "==1.7.1"
         },
         "pylint": {
             "hashes": [
@@ -338,7 +346,6 @@
         },
         "wrapt": {
             "hashes": [
-                "sha256:3675c688952a4c8daa387e53b77cbc97151d7d76834cae9057996047fb4810a2",
                 "sha256:565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1"
             ],
             "version": "==1.11.2"

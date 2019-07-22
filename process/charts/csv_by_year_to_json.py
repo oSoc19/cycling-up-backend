@@ -8,7 +8,7 @@ from config import get_config_by_env_mode
 
 # Processes .csv files found in the /process/base_data/csv_by_year directory.
 #   All base csv's must contain one header line with 2 headers,
-#   followed by datapoints dated by year.
+#   the first is the year and the second one the measured value for that year.
 #   Examples can be found in /process/base_data/csv_by_year
 #   Resulting .json files are added to the /data/historical folder.
 

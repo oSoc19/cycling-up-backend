@@ -20,7 +20,7 @@ from config import get_config_by_env_mode
 
 ## Variables
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 MOBIGIS_FETCH_JSON_PATH = os.path.join(BASE_DIR, "base_data", "mobigis_fetch.json")
 current_config = get_config_by_env_mode()
 

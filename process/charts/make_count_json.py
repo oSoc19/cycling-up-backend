@@ -13,7 +13,7 @@ from config import get_config_by_env_mode
 
 
 current_config = get_config_by_env_mode()
-
+BASE_DIR = Path(__file__).parent.parent
 
 # Define month names
 MONTHS = {1:'jan', 2:'feb', 3:'mar', 4:'apr', 5:'may', 6:'jun',

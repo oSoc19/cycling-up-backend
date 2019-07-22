@@ -6,7 +6,7 @@ import requests
 
 from config import get_config_by_env_mode
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 current_config = get_config_by_env_mode()
 
 

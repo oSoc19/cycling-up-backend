@@ -13,7 +13,7 @@ current_config = get_config_by_env_mode()
 result = {}
 
 
-with open( os.path.join(BASE_DIR, 'base_data',  'result_matched.geojson')) as f:
+with open( os.path.join(BASE_DIR, 'base_data',  'result_matched.json')) as f:
     data = json.loads(f.read())
 
 for feature in data['features']:

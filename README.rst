@@ -1,12 +1,18 @@
-==============================
-Cycling UP API
-==============================
+==============
+Cycling Up API
+==============
 
-Bicycle infrastructure dashboard  API for Brussels Mobility
+API for cycling up bicycle infrastructure dashboard, created for Brussels Mobility.
+The API fetches and processes raw data, as well as data fetched from Mobigis and 
+provides a way to access this data.
+
+Specific routes, their paramters and return types can ben found in the documentation, 
+which is accessed by following the trivial route. (``/``)
+
 
 
 Files
-==========
+=====
 
 ::
 

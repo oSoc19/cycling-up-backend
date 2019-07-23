@@ -13,16 +13,15 @@ which is accessed by following the trivial route: ``/``
 Getting started
 ===============
 
+Installing and running locally
+------------------------------
+
 The API can be run in Python on your local operating system for develompent and debugging purposes.
 
-Prerequisites
--------------
+Prerequisites are:
 
 - python 3      https://www.python.org/download/releases/3.0/
 - pipenv        https://docs.pipenv.org/
-
-Installing and Running
-----------------------
 
 Run the following commands from the cycling-up-backend directory.
 
@@ -36,10 +35,10 @@ Run the following commands from the cycling-up-backend directory.
 Now the API can be accessed at http://localhost:5000
 
 
-Deployment
-==========
+Installing and running with Docker
+----------------------------------
 
-You can build the application as a Docker image and run it:
+You can build the application as a Docker image and run it
 
 * using the `start.sh` script (API access at http://localhost:5005)
 
@@ -55,8 +54,8 @@ You can build the application as a Docker image and run it:
     $ docker run -it -p 5005:5000 --rm cycling-up-api
 
 
-Files
-=====
+File structure
+==============
 
 ::
 

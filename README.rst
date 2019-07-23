@@ -26,10 +26,11 @@ You can run the Python application directly on your local operating system (this
 
 .. code-block:: bash
 
-    $ pipenv install --dev && pipenv shell
-    $ cp .env.example .env                  # Add the .env file
-    $ python app.py                         # start the embedded Flask server
-    $ xdg-open http://localhost:5000        # Open the api on your preferred browser
+    $ pipenv install --dev && pipenv shell   # Install pipenv packages
+    $ cp .env.example .env                   # Add the .env file
+    $ python3 process/__init__.py            # Initialize required data
+    $ python3 app.py                         # Start the embedded Flask server
+    $ xdg-open http://localhost:5000         # Open the api on your preferred browser
 
 
 Running with Docker

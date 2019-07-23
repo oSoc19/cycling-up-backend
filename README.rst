@@ -7,7 +7,7 @@ The API fetches and processes raw data, as well as data fetched from Mobigis and
 provides a way to access this data.
 
 Specific routes, their paramters and return types can ben found in the documentation, 
-which is accessed by following the trivial route. (``/``)
+which is accessed by following the trivial route: ``/``
 
 
 Getting started

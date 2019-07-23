@@ -10,6 +10,48 @@ Specific routes, their paramters and return types can ben found in the documenta
 which is accessed by following the trivial route. (``/``)
 
 
+Getting started
+===============
+
+The API can be run in Python on your local operating system for develompent/debugging purposes.
+
+Prerequisites
+-------------
+
+- python 3      https://www.python.org/download/releases/3.0/
+- pipenv        https://docs.pipenv.org/
+
+Installing and Running
+----------------------
+
+.. code-block:: bash
+
+    $ pipenv install --dev && pipenv shell   # Install pipenv packages
+    $ cp .env.example .env                   # Add the .env file
+    $ python3 process/__init__.py            # Initialize required data
+    $ python3 app.py                         # Start the embedded Flask server
+
+Now the API can be accessed at http://localhost:5000
+
+
+Deployment
+==========
+
+You can build the application as a Docker image and run it:
+
+* using the `start.sh` script (API access at http://localhost:5005)
+
+.. code-block:: bash
+
+    $ bash start.sh
+
+* or manually (API access at http://localhost:5005)
+
+.. code-block:: bash
+
+    $ docker build --tag cycling-up-api .
+    $ docker run -it -p 5005:5000 --rm cycling-up-api
+
 
 Files
 =====
@@ -46,37 +88,3 @@ Files
     │   │   └── ...
     │   └── __init__.py             # Runs all required scripts for populating the data/ direcory properly.
     └── ...
-
-
-Running Locally
-===============
-
-You can run the Python application directly on your local operating system (this requires Python 3 and `Pipenv <https://docs.pipenv.org/>`_):
-
-.. code-block:: bash
-
-    $ pipenv install --dev && pipenv shell   # Install pipenv packages
-    $ cp .env.example .env                   # Add the .env file
-    $ python3 process/__init__.py            # Initialize required data
-    $ python3 app.py                         # Start the embedded Flask server
-
-Now the API can be accessed at http://localhost:5000
-
-
-Running with Docker
-===================
-
-You can build the application as a Docker image and run it:
-
-* using the `start.sh` script (API access at http://localhost:5005)
-
-.. code-block:: bash
-
-    $ bash start.sh
-
-* or manually (API access at http://localhost:5005)
-
-.. code-block:: bash
-
-    $ docker build --tag cycling-up-api .
-    $ docker run -it -p 5005:5000 --rm cycling-up-api

@@ -2,8 +2,8 @@
 Cycling Up API
 ==============
 
-API for cycling up bicycle infrastructure dashboard, created for Brussels Mobility.
-The API fetches and processes raw data, as well as data fetched from Mobigis and 
+API for bicycle infrastructure dashboard, created for Brussels Mobility.
+The API fetches and processes raw data, as well as data fetched from Mobigis, and 
 provides a way to access this data.
 
 Specific routes, their paramters and return types can ben found in the documentation, 
@@ -38,7 +38,7 @@ Now the API can be accessed at http://localhost:5000
 Installing and running with Docker
 ----------------------------------
 
-You can build the application as a Docker image and run it
+You can build the application as a Docker image and run it:
 
 * using the `start.sh` script (API access at http://localhost:5005)
 
@@ -46,7 +46,7 @@ You can build the application as a Docker image and run it
 
     $ bash start.sh
 
-* or manually (API access at http://localhost:5005)
+* manually (API access at http://localhost:5005)
 
 .. code-block:: bash
 
@@ -57,29 +57,29 @@ You can build the application as a Docker image and run it
 File structure
 ==============
 
+The most important files and a small description are listed here:
+
 ::
 
     cycling-up-backend
     |
     ├── Dockerfile              # Configuration file for Docker.
-    ├── Pipfile                 # List of required Python libraries (used by Pipenv)
+    ├── Pipfile                 # List of required Python libraries (used by pipenv).
     ├── app.py                  # Main implementation file of the backend app.
-    ├── config.py               # This file contains the configuration variables.
-    ├── start.sh                # Shell script to execute the Docker image. Used in the production server.
-    ├── api                     # Directory with all scripts needed to run API.
+    ├── config.py               # Contains most of the the configuration variables.
+    ├── start.sh                # Bash script to execute the Docker image. Used in the production server.
+    ├── api                     # Directory with all code needed to run API.
     │   ├── error_handlers.py       # Defines error handlers for all supported HTTP error codes.
     │   ├── getters.py              # Defines all getters for retrieving requested data.
     │   ├── routes.py               # Defines all supported API routes.
-    │   └── swagger                 # Directory with all .yml documentation files.
+    │   └── swagger                 # Directory with all .yml API documentation files (used by flassger)
     │       └── ...
     ├── data                    # Directory from where API fetches data.
     │   └── ...
-    ├── date_matching           # Directory with everything needed to match construction dates.
-    │   └── ...
-    ├── logs                    # Directory with all server logs.
+    ├── date_matching           # Directory with everything needed to match construction dates to infrastructure.
     │   └── ...
     ├── process                 # Directory with everything required for populating /data directory.
-    │   ├── base_data               # All raw data (to be updated manually)
+    │   ├── base_data               # All raw data (to be updated manually).
     │   │   └── ...
     │   ├── charts                  # Scripts for populating data/charts directory.
     │   │   └── ...
@@ -87,5 +87,5 @@ File structure
     │   │   └── ...
     │   ├── fetch_mobigis           # Scripts for populating data/mobigis directory.
     │   │   └── ...
-    │   └── __init__.py             # Runs all required scripts for populating the data/ direcory properly.
+    │   └── __init__.py             # Runs all required scripts for populating the data/ directory properly.
     └── ...

@@ -9,14 +9,12 @@ Files
 
 The example application only needs very few files:
 
-* ``config.py``:        This file contains most of the configuration
-                        variables needed by the backend.
-* ``app.py``:           Main implementation file of the backend app.
-* ``api/swagger.yaml``: The cycling-ip REST API Swagger definition.
-* ``Pipfile``:          List of required Python libraries (used by Pipenv)
-* ``Dockerfile``:       To build the example as a runnable Docker image
-* ``start.sh``:         Shell script to execute the Docker image.
-                        Used in the production server
+* ``config.py`` :        This file contains most of the configuration variables needed by the backend.
+* ``app.py`` :           Main implementation file of the backend app.
+* ``api/swagger.yaml`` : The cycling-ip REST API Swagger definition.
+* ``Pipfile`` :          List of required Python libraries (used by Pipenv)
+* ``Dockerfile`` :       To build the example as a runnable Docker image
+* ``start.sh`` :         Shell script to execute the Docker image. Used in the production server
 
 
 Running Locally
@@ -39,19 +37,15 @@ Running with Docker
 
 You can build the application as a Docker image and run it:
 
-using the `start.sh`_ script
-----------------------------
+* using the `start.sh` script (API access at http://localhost:5005)
 
 .. code-block:: bash
 
     $ bash start.sh
-    $ xdg-open http://localhost:5000        # Open the api on your preferred browser
 
-
-or using
+* or manually (API access at http://localhost:5005)
 
 .. code-block:: bash
 
     $ docker build --tag cycling-up-api .
-    $ docker run -it -p 5005:8080 --rm cycling-up-api
-    $ ./test.sh # do some test HTTP requests
+    $ docker run -it -p 5005:5000 --rm cycling-up-api

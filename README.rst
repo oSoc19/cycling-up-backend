@@ -30,7 +30,8 @@ You can run the Python application directly on your local operating system (this
     $ cp .env.example .env                   # Add the .env file
     $ python3 process/__init__.py            # Initialize required data
     $ python3 app.py                         # Start the embedded Flask server
-    $ xdg-open http://localhost:5000         # Open the api on your preferred browser
+
+Now the API can be accessed at http://localhost:5000
 
 
 Running with Docker

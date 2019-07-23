@@ -4,17 +4,42 @@ Cycling UP API
 
 Bicycle infrastructure dashboard  API for Brussels Mobility
 
+
 Files
-=====
+==========
 
-The example application only needs very few files:
+::
 
-* ``config.py`` :        This file contains most of the configuration variables needed by the backend.
-* ``app.py`` :           Main implementation file of the backend app.
-* ``api/swagger.yaml`` : The cycling-ip REST API Swagger definition.
-* ``Pipfile`` :          List of required Python libraries (used by Pipenv)
-* ``Dockerfile`` :       To build the example as a runnable Docker image
-* ``start.sh`` :         Shell script to execute the Docker image. Used in the production server
+    cycling-up-backend
+    |
+    ├── Dockerfile              # Configuration file for Docker.
+    ├── Pipfile                 # List of required Python libraries (used by Pipenv)
+    ├── app.py                  # Main implementation file of the backend app.
+    ├── config.py               # This file contains the configuration variables.
+    ├── start.sh                # Shell script to execute the Docker image. Used in the production server.
+    ├── api                     # Directory with all scripts needed to run API.
+    │   ├── error_handlers.py       # Defines error handlers for all supported HTTP error codes.
+    │   ├── getters.py              # Defines all getters for retrieving requested data.
+    │   ├── routes.py               # Defines all supported API routes.
+    │   └── swagger                 # Directory with all .yml documentation files.
+    │       └── ...
+    ├── data                    # Directory from where API fetches data.
+    │   └── ...
+    ├── date_matching           # Directory with everything needed to match construction dates.
+    │   └── ...
+    ├── logs                    # Directory with all server logs.
+    │   └── ...
+    ├── process                 # Directory with everything required for populating /data directory.
+    │   ├── base_data               # All raw data (to be updated manually)
+    │   │   └── ...
+    │   ├── charts                  # Scripts for populating data/charts directory.
+    │   │   └── ...
+    │   ├── construction_date       # Scripts for populating data/infra_dates directory.
+    │   │   └── ...
+    │   ├── fetch_mobigis           # Scripts for populating data/mobigis directory.
+    │   │   └── ...
+    │   └── __init__.py             # Runs all required scripts for populating the data/ direcory properly.
+    └── ...
 
 
 Running Locally

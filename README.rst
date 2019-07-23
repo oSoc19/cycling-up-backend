@@ -13,7 +13,7 @@ which is accessed by following the trivial route: ``/``
 Getting started
 ===============
 
-The API can be run in Python on your local operating system for develompent/debugging purposes.
+The API can be run in Python on your local operating system for develompent and debugging purposes.
 
 Prerequisites
 -------------
@@ -23,6 +23,8 @@ Prerequisites
 
 Installing and Running
 ----------------------
+
+Run the following commands from the cycling-up-backend directory.
 
 .. code-block:: bash
 

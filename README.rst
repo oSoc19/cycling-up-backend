@@ -6,7 +6,7 @@ API for bicycle infrastructure dashboard, created for Brussels Mobility.
 The API fetches and processes raw data, as well as data fetched from Mobigis, and 
 provides a way to access this data.
 
-Specific routes, their paramters and return types can ben found in the documentation, 
+Specific routes, their paramters and return types can be found in the documentation, 
 which is accessed by following the trivial route: ``/``
 
 
@@ -23,7 +23,7 @@ Prerequisites are:
 - python 3      https://www.python.org/download/releases/3.0/
 - pipenv        https://docs.pipenv.org/
 
-Run the following commands from the cycling-up-backend directory.
+Run the following commands from the cycling-up-backend directory:
 
 .. code-block:: bash
 
@@ -40,19 +40,20 @@ Installing and running with Docker
 
 You can build the application as a Docker image and run it:
 
-* using the `start.sh` script (API access at http://localhost:5005)
+* using the `start.sh` script
 
 .. code-block:: bash
 
     $ bash start.sh
 
-* manually (API access at http://localhost:5005)
+* or manually
 
 .. code-block:: bash
 
     $ docker build --tag cycling-up-api .
     $ docker run -it -p 5005:5000 --rm cycling-up-api
 
+Now the API can be accessed at http://localhost:5005
 
 File structure
 ==============

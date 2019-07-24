@@ -9,7 +9,8 @@ parameters:
     enum:
       - historic_villo_rentals
       - commuting
-      - cumulated_kilometers
+      - cumulated_kilometers_regional_roads
+      - cumulated_kilometers_gfr
 
   
 responses:

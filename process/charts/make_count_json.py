@@ -68,11 +68,10 @@ for file_name in FILE_NAMES:
 
         # extract info from row and place appropriately in geojson file.
         for row in reader:
-            year = row[1]
+            year = row[0]
             month = file_name[:3]
             index = 0
             for count in row[1:]:
-                print(count)
                 if count != " ":
                     features[index]['properties']['count_data'][month][year] = int(count)
                 else:
